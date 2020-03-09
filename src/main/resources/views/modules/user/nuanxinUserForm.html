@@ -1,34 +1,34 @@
-<% layout('/layouts/default.html', {title: '轮播图管理', libs: ['validate']}){ %>
+<% layout('/layouts/default.html', {title: '用户信息管理', libs: ['validate']}){ %>
 <div class="main-content">
 	<div class="box box-main">
 		<div class="box-header with-border">
 			<div class="box-title">
-				<i class="fa icon-note"></i> ${text(nuanxinCarousel.isNewRecord ? '新增轮播图' : '编辑轮播图')}
+				<i class="fa icon-note"></i> ${text(nuanxinUser.isNewRecord ? '新增用户信息' : '编辑用户信息')}
 			</div>
 			<div class="box-tools pull-right">
 				<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
 			</div>
 		</div>
-		<#form:form id="inputForm" model="${nuanxinCarousel}" action="${ctx}/system/nuanxinCarousel/save" method="post" class="form-horizontal">
+		<#form:form id="inputForm" model="${nuanxinUser}" action="${ctx}/user/nuanxinUser/save" method="post" class="form-horizontal">
 			<div class="box-body">
 				<div class="form-unit">${text('基本信息')}</div>
-				<#form:hidden path="carouselId"/>
+				<#form:hidden path="userId"/>
 				<div class="row">
 					<div class="col-xs-6">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required ">*</span> ${text('轮播图名称')}：<i class="fa icon-question hide"></i></label>
+								<span class="required ">*</span> ${text('用户名')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="carouselName" maxlength="100" class="form-control required"/>
+								<#form:input path="userName" maxlength="30" class="form-control required"/>
 							</div>
 						</div>
 					</div>
 					<div class="col-xs-6">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required ">*</span> ${text('轮播图')}：<i class="fa icon-question hide"></i></label>
+								<span class="required ">*</span> ${text('用户状态')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="carouselImage" maxlength="200" class="form-control required"/>
+								<#form:select path="userStatus" dictType="nx_user_status" class="form-control required digits" />
 							</div>
 						</div>
 					</div>
@@ -37,18 +37,18 @@
 					<div class="col-xs-6">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text('轮播图链接')}：<i class="fa icon-question hide"></i></label>
+								<span class="required ">*</span> ${text('用户类型')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="carouselLink" maxlength="200" class="form-control"/>
+								<#form:select path="userType" dictType="nx_user_type" class="form-control required digits" />
 							</div>
 						</div>
 					</div>
 					<div class="col-xs-6">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text('描述')}：<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text('手机号')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="carouselDetail" maxlength="200" class="form-control"/>
+								<#form:input path="mobile" maxlength="20" class="form-control"/>
 							</div>
 						</div>
 					</div>
@@ -57,19 +57,10 @@
 					<div class="col-xs-6">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required ">*</span> ${text('轮播图类型')}：<i class="fa icon-question hide"></i></label>
+								<span class="required ">*</span> ${text('注册时间')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:select path="carouselType" dictType="nx_carousel_type" class="form-control required digits" />
-							</div>
-						</div>
-					</div>
-					<div class="col-xs-6">
-						<div class="form-group">
-							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text('更新时间')}：<i class="fa icon-question hide"></i></label>
-							<div class="col-sm-8">
-								<#form:input path="updateTime" readonly="true" maxlength="20" class="form-control Wdate"
-									dataFormat="datetime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:true});"/>
+								<#form:input path="registTime" readonly="true" maxlength="20" class="form-control Wdate required"
+									dataFormat="datetime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:false});"/>
 							</div>
 						</div>
 					</div>
@@ -78,7 +69,7 @@
 			<div class="box-footer">
 				<div class="row">
 					<div class="col-sm-offset-2 col-sm-10">
-						<% if (hasPermi('system:nuanxinCarousel:edit')){ %>
+						<% if (hasPermi('user:nuanxinUser:edit')){ %>
 							<button type="submit" class="btn btn-sm btn-primary" id="btnSubmit"><i class="fa fa-check"></i> ${text('保 存')}</button>&nbsp;
 						<% } %>
 						<button type="button" class="btn btn-sm btn-default" id="btnCancel" onclick="js.closeCurrentTabPage()"><i class="fa fa-reply-all"></i> ${text('关 闭')}</button>

@@ -22,9 +22,9 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label">${text('carousel_type')}：</label>
+					<label class="control-label">${text('轮播图类型')}：</label>
 					<div class="control-inline width-120">
-						<#form:select path="carouselType" dictType="carousel_type" blankOption="true" class="form-control"/>
+						<#form:select path="carouselType" dictType="nx_carousel_type" blankOption="true" class="form-control"/>
 					</div>
 				</div>
 				<div class="form-group">
@@ -48,9 +48,9 @@ $('#dataGrid').dataGrid({
 		}},
 		{header:'${text("轮播图")}', name:'carouselImage', index:'a.carousel_image', width:150, align:"left"},
 		{header:'${text("轮播图链接")}', name:'carouselLink', index:'a.carousel_link', width:150, align:"left"},
-		{header:'${text("carousel_detail")}', name:'carouselDetail', index:'a.carousel_detail', width:150, align:"left"},
-		{header:'${text("carousel_type")}', name:'carouselType', index:'a.carousel_type', width:150, align:"center", formatter: function(val, obj, row, act){
-			return js.getDictLabel(${@DictUtils.getDictListJson('carousel_type')}, val, '${text("未知")}', true);
+		{header:'${text("描述")}', name:'carouselDetail', index:'a.carousel_detail', width:150, align:"left"},
+		{header:'${text("轮播图类型")}', name:'carouselType', index:'a.carousel_type', width:150, align:"center", formatter: function(val, obj, row, act){
+			return js.getDictLabel(${@DictUtils.getDictListJson('nx_carousel_type')}, val, '${text("未知")}', true);
 		}},
 		{header:'${text("更新时间")}', name:'updateTime', index:'a.update_time', width:150, align:"center"},
 		{header:'${text("操作")}', name:'actions', width:120, sortable:false, title:false, formatter: function(val, obj, row, act){

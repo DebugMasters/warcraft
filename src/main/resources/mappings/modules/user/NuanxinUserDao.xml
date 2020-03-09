@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fenghuolun.modules.user.dao.NuanxinUserDao">
+	
+	<!-- 查询数据
+	<select id="findList" resultType="NuanxinUser">
+		SELECT ${sqlMap.column.toSql()}
+		FROM ${sqlMap.table.toSql()}
+		<where>
+			${sqlMap.where.toSql()}
+		</where>
+		ORDER BY ${sqlMap.order.toSql()}
+	</select> -->
+	
+	<select id="getByWxOpenId" resultType="NuanxinUser">
+		SELECT * FROM nuanxin_user a
+		<where>
+			<if test="wxOpenid != null and wxOpenid != ''">
+				AND a.wx_openid = #{wxOpenid} 
+			</if>
+		</where>
+		LIMIT 1
+	</select>
+</mapper>
