@@ -37,4 +37,14 @@ public class NuanxinUserApiController extends BaseController {
 		String image = request.getParameter("image");
 		return nuanxinUserService.login(code, userName, image);
 	}
+	
+	/*
+	 * 个人信息
+	 */
+	@ResponseBody
+	@RequestMapping(value = "getUserInfo")
+	public Map<String, Object> getUserInfo(HttpServletRequest request, HttpServletResponse response) {
+		String userId = request.getParameter("userId");
+		return nuanxinUserService.getUserInfo(userId);
+	}
 }

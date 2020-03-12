@@ -116,4 +116,23 @@ public class NuanxinUserService extends CrudService<NuanxinUserDao, NuanxinUser>
 		result.put("userId", user.getUserId());
 		return result;
 	}
+	
+	public Map<String, Object> getUserInfo(String userId) {
+		Map<String, Object> result = new HashMap<>();
+		NuanxinUser user = new NuanxinUser();
+		user.setUserId(userId);
+		user = dao.get(user);
+		if (user == null) {
+			result.put("success", false);
+			result.put("msg", "未找到用户");
+		}
+		else {
+			result.put("success", true);
+			result.put("msg", "查询成功");
+			result.put("userInfo", user);
+			result.put("coupon", 1);
+			result.put("order", 2);
+		}
+		return result;
+	}
 }
