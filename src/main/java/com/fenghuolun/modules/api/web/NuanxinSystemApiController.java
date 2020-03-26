@@ -1,5 +1,6 @@
 package com.fenghuolun.modules.api.web;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,8 +15,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fenghuolun.modules.system.entity.NuanxinArticle;
 import com.fenghuolun.modules.system.entity.NuanxinCarousel;
+import com.fenghuolun.modules.system.entity.NuanxinRealmList;
 import com.fenghuolun.modules.system.service.NuanxinArticleService;
 import com.fenghuolun.modules.system.service.NuanxinCarouselService;
+import com.fenghuolun.modules.system.service.NuanxinRealmListService;
 import com.jeesite.common.web.BaseController;
 
 /**
@@ -32,7 +35,12 @@ public class NuanxinSystemApiController extends BaseController {
 	private NuanxinCarouselService nuanxinCarouselService;
 	@Autowired
 	private NuanxinArticleService nuanxinArticleService;
+	@Autowired
+	private NuanxinRealmListService nuanxinRealmListService;
 	
+	/*
+	 * 主页信息
+	 */
 	@ResponseBody
 	@RequestMapping(value = "getIndexInfo")
 	public Map<String, Object> getIndexInfo(HttpServletRequest request, HttpServletResponse response){
@@ -43,6 +51,26 @@ public class NuanxinSystemApiController extends BaseController {
 		result.put("msg", "查询成功");
 		result.put("carouselList", carouselList);
 		result.put("articleList", articleList);
+		result.put("notificationList", new ArrayList<String>());
+		return result;
+	}
+	
+	/*
+	 * 服务器列表
+	 */
+	@ResponseBody
+	@RequestMapping(value = "getRealmList")
+	public Map<String, Object> getRealmList(HttpServletRequest request, HttpServletResponse response){
+		String realmZone = request.getParameter("realmZone");
+		String realmType = request.getParameter("realmType");
+		NuanxinRealmList realmList = new NuanxinRealmList();
+		realmList.setRealmZone(Integer.parseInt(realmZone));
+		realmList.setRealmType(Integer.parseInt(realmType));
+		List<NuanxinRealmList> list = nuanxinRealmListService.findList(realmList);
+		Map<String, Object> result = new HashMap<>();
+		result.put("success", true);
+		result.put("msg", "查询成功");
+		result.put("realmList", list);
 		return result;
 	}
 }
