@@ -12,13 +12,21 @@
 		ORDER BY ${sqlMap.order.toSql()}
 	</select> -->
 	
-	<select id="getByWxOpenId" resultType="NuanxinUser">
+	<select id="getByWxOpenId" parameterType="java.lang.String" resultType="NuanxinUser">
 		SELECT * FROM nuanxin_user a
 		<where>
-			<if test="wxOpenid != null and wxOpenid != ''">
+			<if test="_parameter != null and _parameter != ''">
 				AND a.wx_openid = #{wxOpenid} 
 			</if>
 		</where>
 		LIMIT 1
 	</select>
+	
+	<update id="updateAccountInfo">
+		UPDATE nuanxin_user 
+		SET game_account = #{gameAccount}, 
+			game_password = #{gamePassword}, 
+			mobile = #{mobile}
+		WHERE user_id = #{userId}
+	</update>
 </mapper>

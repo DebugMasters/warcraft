@@ -21,6 +21,7 @@ demoMode: false
 server:
 
   port: 8980
+#  port: 9999
   servlet:
     context-path: /warcraft
   tomcat:

@@ -82,7 +82,8 @@ public class NuanxinUserService extends CrudService<NuanxinUserDao, NuanxinUser>
 	public void delete(NuanxinUser nuanxinUser) {
 		super.delete(nuanxinUser);
 	}
-	
+
+	@Transactional(readOnly=false)
 	public Map<String, Object> login(String code, String userName, String image) {
 		Map<String, Object> result = new HashMap<>();
 		String appId = nuanxinConfigDao.getByConfigKey("nx.wechat.appId").getConfigValue();
@@ -132,6 +133,27 @@ public class NuanxinUserService extends CrudService<NuanxinUserDao, NuanxinUser>
 			result.put("userInfo", user);
 			result.put("coupon", 1);
 			result.put("order", 2);
+		}
+		return result;
+	}
+
+	@Transactional(readOnly=false)
+	public Map<String, Object> updateAccountInfo(String userId, String account, String password, String mobile) {
+		Map<String, Object> result = new HashMap<>();
+		NuanxinUser user = new NuanxinUser();
+		user.setUserId(userId);
+		user = dao.get(user);
+		if (user == null) {
+			result.put("success", false);
+			result.put("msg", "未找到用户");
+		}
+		else {
+			user.setGameAccount(account);
+			user.setGamePassword(password);
+			user.setMobile(mobile);
+			dao.updateAccountInfo(user);
+			result.put("success", true);
+			result.put("msg", "更新成功");
 		}
 		return result;
 	}

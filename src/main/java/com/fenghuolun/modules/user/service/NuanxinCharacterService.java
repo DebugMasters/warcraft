@@ -87,10 +87,21 @@ public class NuanxinCharacterService extends CrudService<NuanxinCharacterDao, Nu
 		result.put("list", list);
 		return result;
 	}
+	
+	public Map<String, Object> getCharacterById(String characterId) {
+		NuanxinCharacter character = new NuanxinCharacter();
+		character.setCharacterId(characterId);
+		character = dao.get(character);
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("success", true);
+		result.put("msg", "查询成功");
+		result.put("data", character);
+		return result;
+	}
 
 	@Transactional(readOnly=false)
 	public Map<String, Object> saveCharacter(String id, String name, String account, String realm, int realmType, int claz,
-			int allianceHorde, int spec, String userId) {
+			int allianceHorde, String spec, String userId) {
 		NuanxinCharacter character = new NuanxinCharacter();
 		character.setCharacterName(name);
 		character.setCharacterAccount(account);

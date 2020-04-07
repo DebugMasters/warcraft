@@ -30,6 +30,8 @@ import com.jeesite.common.mybatis.mapper.query.QueryType;
 		@Column(name="wx_no", attrName="wxNo", label="wx_no", isQuery=false),
 		@Column(name="wx_openid", attrName="wxOpenid", label="wx_openid", isQuery=false),
 		@Column(name="wx_session_key", attrName="wxSessionKey", label="wx_session_key", isQuery=false),
+		@Column(name="game_account", attrName="gameAccount", label="game_account", isQuery=false),
+		@Column(name="game_password", attrName="gamePassword", label="game_password", isQuery=false),
 	}, orderBy="a.user_id DESC"
 )
 public class NuanxinUser extends DataEntity<NuanxinUser> {
@@ -45,6 +47,8 @@ public class NuanxinUser extends DataEntity<NuanxinUser> {
 	private String wxNo;		// wx_no
 	private String wxOpenid;		// wx_openid
 	private String wxSessionKey;		// wx_session_key
+	private String gameAccount;
+	private String gamePassword;
 	
 	public NuanxinUser() {
 		this(null);
@@ -147,4 +151,19 @@ public class NuanxinUser extends DataEntity<NuanxinUser> {
 		this.wxSessionKey = wxSessionKey;
 	}
 	
+	public String getGameAccount() {
+		return gameAccount;
+	}
+	
+	public void setGameAccount(String gameAccount) {
+		this.gameAccount = gameAccount;
+	}
+	
+	public String getGamePassword() {
+		return gamePassword;
+	}
+	
+	public void setGamePassword(String gamePassword) {
+		this.gamePassword = gamePassword;
+	}
 }

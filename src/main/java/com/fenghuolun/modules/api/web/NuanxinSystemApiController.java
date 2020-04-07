@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fenghuolun.modules.system.entity.NuanxinArticle;
 import com.fenghuolun.modules.system.entity.NuanxinCarousel;
 import com.fenghuolun.modules.system.entity.NuanxinRealmList;
+import com.fenghuolun.modules.system.entity.NuanxinTradeCatalog;
 import com.fenghuolun.modules.system.service.NuanxinArticleService;
 import com.fenghuolun.modules.system.service.NuanxinCarouselService;
 import com.fenghuolun.modules.system.service.NuanxinRealmListService;
+import com.fenghuolun.modules.system.service.NuanxinTradeCatalogService;
 import com.jeesite.common.web.BaseController;
 
 /**
@@ -37,6 +39,8 @@ public class NuanxinSystemApiController extends BaseController {
 	private NuanxinArticleService nuanxinArticleService;
 	@Autowired
 	private NuanxinRealmListService nuanxinRealmListService;
+	@Autowired
+	private NuanxinTradeCatalogService NuanxinTradeCatalogService;
 	
 	/*
 	 * 主页信息
@@ -71,6 +75,22 @@ public class NuanxinSystemApiController extends BaseController {
 		result.put("success", true);
 		result.put("msg", "查询成功");
 		result.put("realmList", list);
+		return result;
+	}
+	
+	/*
+	 * 代练类别列表
+	 */
+	@ResponseBody
+	@RequestMapping(value = "getCatalogList")
+	public Map<String, Object> getCatalogList(HttpServletRequest request, HttpServletResponse response){
+		String parentId = request.getParameter("parentId");
+		String catalogType = request.getParameter("catalogType");
+		List<NuanxinTradeCatalog> list = NuanxinTradeCatalogService.getByParentId(parentId, Integer.parseInt(catalogType));
+		Map<String, Object> result = new HashMap<>();
+		result.put("success", true);
+		result.put("msg", "查询成功");
+		result.put("catalogList", list);
 		return result;
 	}
 }

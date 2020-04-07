@@ -36,7 +36,7 @@ public class NuanxinCharacter extends DataEntity<NuanxinCharacter> {
 	private Integer characterRealmType;		// character_realm_type
 	private Integer characterClass;		// character_class
 	private Integer allianceHorde;		// alliance_horde
-	private Integer characterSpecialization;		// character_specialization
+	private String characterSpecialization;		// character_specialization
 	private String characterRealm;		// character_realm
 	private String userId;		// user_id
 	
@@ -97,11 +97,11 @@ public class NuanxinCharacter extends DataEntity<NuanxinCharacter> {
 		this.allianceHorde = allianceHorde;
 	}
 	
-	public Integer getCharacterSpecialization() {
+	public String getCharacterSpecialization() {
 		return characterSpecialization;
 	}
 
-	public void setCharacterSpecialization(Integer characterSpecialization) {
+	public void setCharacterSpecialization(String characterSpecialization) {
 		this.characterSpecialization = characterSpecialization;
 	}
 	

@@ -13,6 +13,11 @@
 	</select> -->
 	
 	<delete id="deleteByAccountId" parameterType="java.lang.String">
-		DELETE FROM nuanxin_character WHERE character_account = #{accountId}
+		DELETE FROM nuanxin_character
+		<where>
+			<if test="_parameter != null and _parameter != ''">
+				character_account = #{accountId}
+			</if>
+		</where>
 	</delete>
 </mapper>

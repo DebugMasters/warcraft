@@ -96,6 +96,13 @@ public class NuanxinUserApiController extends BaseController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value = "getCharacter")
+	public Map<String, Object> getCharacter(HttpServletRequest request, HttpServletResponse response) {
+		String characterId = request.getParameter("characterId");
+		return nuanxinCharacterService.getCharacterById(characterId);
+	}
+	
+	@ResponseBody
 	@RequestMapping(value = "saveCharacter")
 	public Map<String, Object> saveCharacter(HttpServletRequest request, HttpServletResponse response) {
 		String characterId = request.getParameter("characterId");
@@ -115,7 +122,7 @@ public class NuanxinUserApiController extends BaseController {
 		}
 		return nuanxinCharacterService.saveCharacter(characterId, characterName, characterAccount, 
 				characterRealm, Integer.parseInt(characterRealmType), Integer.parseInt(characterClass), Integer.parseInt(allianceHorde), 
-				Integer.parseInt(characterSpecialization), userId);
+				characterSpecialization, userId);
 	}
 	
 	@ResponseBody
@@ -124,5 +131,15 @@ public class NuanxinUserApiController extends BaseController {
 		String characterId = request.getParameter("characterId");
 		String userId = request.getParameter("userId");
 		return nuanxinCharacterService.deleteCharacter(userId, characterId);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "saveAccountInfo")
+	public Map<String, Object> saveAccountInfo(HttpServletRequest request, HttpServletResponse response) {
+		String userId = request.getParameter("userId");
+		String account = request.getParameter("account");
+		String password = request.getParameter("password");
+		String mobile = request.getParameter("mobile");
+		return nuanxinUserService.updateAccountInfo(userId, account, password, mobile);
 	}
 }
