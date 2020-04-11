@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fenghuolun.modules.system.dao.NuanxinDictDataDao">
+	
+	<select id="getSpec" resultType="java.lang.String">
+		SELECT a.dict_label FROM js_sys_dict_data a
+		<where>
+			AND a.tree_level = 1
+			<if test="_parameter != null and _parameter != ''">
+				AND a.parent_code = 
+				(SELECT dict_code FROM js_sys_dict_data WHERE dict_type = 'nx_character_class' AND dict_value = #{characterClass})
+			</if>
+		</where>
+	</select>
+</mapper>

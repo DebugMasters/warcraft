@@ -19,9 +19,11 @@ import com.fenghuolun.modules.system.entity.NuanxinRealmList;
 import com.fenghuolun.modules.system.entity.NuanxinTradeCatalog;
 import com.fenghuolun.modules.system.service.NuanxinArticleService;
 import com.fenghuolun.modules.system.service.NuanxinCarouselService;
+import com.fenghuolun.modules.system.service.NuanxinDictDataService;
 import com.fenghuolun.modules.system.service.NuanxinRealmListService;
 import com.fenghuolun.modules.system.service.NuanxinTradeCatalogService;
 import com.jeesite.common.web.BaseController;
+import com.jeesite.modules.sys.entity.DictData;
 
 /**
  * nuanxin_carouselController
@@ -40,7 +42,9 @@ public class NuanxinSystemApiController extends BaseController {
 	@Autowired
 	private NuanxinRealmListService nuanxinRealmListService;
 	@Autowired
-	private NuanxinTradeCatalogService NuanxinTradeCatalogService;
+	private NuanxinTradeCatalogService nuanxinTradeCatalogService;
+	@Autowired
+	private NuanxinDictDataService nuanxinDictDataService;
 	
 	/*
 	 * 主页信息
@@ -86,11 +90,26 @@ public class NuanxinSystemApiController extends BaseController {
 	public Map<String, Object> getCatalogList(HttpServletRequest request, HttpServletResponse response){
 		String parentId = request.getParameter("parentId");
 		String catalogType = request.getParameter("catalogType");
-		List<NuanxinTradeCatalog> list = NuanxinTradeCatalogService.getByParentId(parentId, Integer.parseInt(catalogType));
+		List<NuanxinTradeCatalog> list = nuanxinTradeCatalogService.getByParentId(parentId, Integer.parseInt(catalogType));
 		Map<String, Object> result = new HashMap<>();
 		result.put("success", true);
 		result.put("msg", "查询成功");
 		result.put("catalogList", list);
+		return result;
+	}
+	
+	/*
+	 * 职业专精列表
+	 */
+	@ResponseBody
+	@RequestMapping(value = "getCharacterSpec")
+	public Map<String, Object> getCharacterSpec(HttpServletRequest request, HttpServletResponse response){
+		String characterClass = request.getParameter("characterClass");
+		List<String> list = nuanxinDictDataService.getSpec(characterClass);
+		Map<String, Object> result = new HashMap<>();
+		result.put("success", true);
+		result.put("msg", "查询成功");
+		result.put("specList", list);
 		return result;
 	}
 }
