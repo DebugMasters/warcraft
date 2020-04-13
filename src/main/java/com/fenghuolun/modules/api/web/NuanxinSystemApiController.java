@@ -23,10 +23,9 @@ import com.fenghuolun.modules.system.service.NuanxinDictDataService;
 import com.fenghuolun.modules.system.service.NuanxinRealmListService;
 import com.fenghuolun.modules.system.service.NuanxinTradeCatalogService;
 import com.jeesite.common.web.BaseController;
-import com.jeesite.modules.sys.entity.DictData;
 
 /**
- * nuanxin_carouselController
+ * System API Controller
  * @author zhengxiaotai
  * @version 2020-03-02
  */

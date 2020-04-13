@@ -17,7 +17,7 @@ import com.fenghuolun.modules.user.service.NuanxinUserService;
 import com.jeesite.common.web.BaseController;
 
 /**
- * nuanxin_carouselController
+ * User API Controller
  * @author zhengxiaotai
  * @version 2020-03-02
  */

@@ -25,6 +25,7 @@ import com.fenghuolun.modules.system.service.NuanxinConfigService;
 import com.fenghuolun.modules.utils.entity.AccessTokenResponse;
 import com.fenghuolun.modules.utils.entity.JSCode2SessionResponse;
 import com.fenghuolun.modules.utils.entity.MediaInfo;
+import com.fenghuolun.modules.utils.entity.OrderInformResponse;
 import com.fenghuolun.modules.utils.entity.UnifiedOrderRequest;
 import com.fenghuolun.modules.utils.entity.UnifiedOrderResponse;
 import com.google.gson.Gson;
@@ -181,17 +182,17 @@ public class WechatUtil {
 	}
 	
 	public static void payCallback(HttpServletRequest request) throws Exception {
-//		BufferedReader in = new BufferedReader(new InputStreamReader(request.getInputStream()));
-//		StringBuilder sb = new StringBuilder();
-//		String line = null;
-//		while ((line = in.readLine()) != null) {
-//			sb.append(line).append("\n");
-//		}
-//		String result = sb.toString();
-//		System.out.println(result);
-//		
-//		XStream xStream = new XStream();
-//		xStream.alias("xml", OrderInformResponse.class);
+		BufferedReader in = new BufferedReader(new InputStreamReader(request.getInputStream()));
+		StringBuilder sb = new StringBuilder();
+		String line = null;
+		while ((line = in.readLine()) != null) {
+			sb.append(line).append("\n");
+		}
+		String result = sb.toString();
+		System.out.println(result);
+		
+		XStream xStream = new XStream();
+		xStream.alias("xml", OrderInformResponse.class);
 //		OrderInformResponse response = (OrderInformResponse) xStream.fromXML(result);
 //		NuanxinPaymentInfo paymentInfo = new NuanxinPaymentInfo();
 //		paymentInfo.setReturnCode(response.getReturn_code());
