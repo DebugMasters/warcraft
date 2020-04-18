@@ -5,6 +5,9 @@ package com.fenghuolun.modules.order.dao;
 
 import com.jeesite.common.dao.CrudDao;
 import com.jeesite.common.mybatis.annotation.MyBatisDao;
+
+import java.util.List;
+
 import com.fenghuolun.modules.order.entity.NuanxinOrder;
 
 /**
@@ -14,5 +17,5 @@ import com.fenghuolun.modules.order.entity.NuanxinOrder;
  */
 @MyBatisDao
 public interface NuanxinOrderDao extends CrudDao<NuanxinOrder> {
-	
+	public List<NuanxinOrder> orderList(NuanxinOrder order);
 }

@@ -48,4 +48,20 @@ public class NuanxinOrderApiController {
 		}
 		return nuanxinOrderService.saveOrder(request.getParameterMap());
 	}
+	
+	/*
+	 * 订单列表
+	 */
+	@ResponseBody
+	@RequestMapping(value = "orderList")
+	public Map<String, Object> orderList(HttpServletRequest request, HttpServletResponse response) {
+		String userId = request.getParameter("userId");
+		if (userId == null || userId.isEmpty()) {
+			Map<String, Object> result = new HashMap<>();
+			result.put("success", false);
+			result.put("msg", "用户信息错误");
+			return result;
+		}
+		return nuanxinOrderService.orderList(userId);
+	}
 }

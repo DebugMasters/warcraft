@@ -5,6 +5,7 @@ package com.fenghuolun.modules.order.service;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -116,6 +117,17 @@ public class NuanxinOrderService extends CrudService<NuanxinOrderDao, NuanxinOrd
 		result.put("success", true);
 		result.put("msg", "下单成功");
 		result.put("payInfo", payInfo);
+		return result;
+	}
+	
+	public Map<String, Object> orderList(String userId) {
+		Map<String, Object> result = new HashMap<>();
+		NuanxinOrder order = new NuanxinOrder();
+		order.setUserId(userId);
+		List<NuanxinOrder> list = dao.orderList(order);
+		result.put("success", true);
+		result.put("msg", "查询成功");
+		result.put("orderList", list);
 		return result;
 	}
 }

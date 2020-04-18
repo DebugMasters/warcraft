@@ -57,6 +57,10 @@ public class NuanxinOrder extends DataEntity<NuanxinOrder> {
 	private String phone;		// 手机
 	private String note;		// 备注
 	
+	private String catalogName1;
+	private String catalogName2;
+	private String catalogName3;
+	
 	public NuanxinOrder() {
 		this(null);
 	}
@@ -209,4 +213,27 @@ public class NuanxinOrder extends DataEntity<NuanxinOrder> {
 		this.note = note;
 	}
 	
+	public String getCatalogName1() {
+		return catalogName1;
+	}
+	
+	public void setCatalogName1(String catalogName1) {
+		this.catalogName1 = catalogName1;
+	}
+	
+	public String getCatalogName2() {
+		return catalogName2;
+	}
+	
+	public void setCatalogName2(String catalogName2) {
+		this.catalogName2 = catalogName2;
+	}
+	
+	public String getCatalogName3() {
+		return catalogName3;
+	}
+	
+	public void setCatalogName3(String catalogName3) {
+		this.catalogName3 = catalogName3;
+	}
 }

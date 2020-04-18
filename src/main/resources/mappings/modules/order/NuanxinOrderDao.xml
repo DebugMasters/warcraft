@@ -12,4 +12,19 @@
 		ORDER BY ${sqlMap.order.toSql()}
 	</select> -->
 	
+	<select id="orderList" resultType="NuanxinOrder">
+		SELECT a.*, 
+			b.catalog_name AS "catalogName1", 
+			c.catalog_name AS "catalogName2", 
+			d.catalog_name AS "catalogName3" 
+		FROM nuanxin_order a 
+		LEFT JOIN nuanxin_trade_catalog b ON a.order_catalog_1 = b.catalog_code 
+		LEFT JOIN nuanxin_trade_catalog c ON a.order_catalog_2 = c.catalog_code 
+		LEFT JOIN nuanxin_trade_catalog d ON a.order_catalog_3 = d.catalog_code 
+		<where>
+			<if test="userId != null and userId != ''">
+				AND a.user_id = #{userId} 
+			</if>
+		</where>
+	</select>
 </mapper>
