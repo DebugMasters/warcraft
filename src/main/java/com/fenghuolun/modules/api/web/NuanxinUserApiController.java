@@ -105,24 +105,21 @@ public class NuanxinUserApiController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "saveCharacter")
 	public Map<String, Object> saveCharacter(HttpServletRequest request, HttpServletResponse response) {
-		String characterId = request.getParameter("characterId");
-		String characterName = request.getParameter("characterName");
-		String characterAccount = request.getParameter("characterAccount");
-		String characterRealm = request.getParameter("characterRealm");
-		String characterRealmType = request.getParameter("characterRealmType");
-		String characterClass = request.getParameter("characterClass");
-		String allianceHorde = request.getParameter("allianceHorde");
-		String characterSpecialization = request.getParameter("characterSpecialization");
 		String userId = request.getParameter("userId");
+		String characterName = request.getParameter("characterName");
+		if (userId == null || userId.isEmpty()) {
+			Map<String, Object> result = new HashMap<>();
+			result.put("success", false);
+			result.put("msg", "用户信息错误");
+			return result;
+		}
 		if (characterName == null || characterName.isEmpty()) {
 			Map<String, Object> result = new HashMap<>();
 			result.put("success", false);
 			result.put("msg", "角色名不能为空");
 			return result;
 		}
-		return nuanxinCharacterService.saveCharacter(characterId, characterName, characterAccount, 
-				characterRealm, Integer.parseInt(characterRealmType), Integer.parseInt(characterClass), Integer.parseInt(allianceHorde), 
-				characterSpecialization, userId);
+		return nuanxinCharacterService.saveCharacter(request.getParameterMap());
 	}
 	
 	@ResponseBody

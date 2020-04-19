@@ -24,6 +24,7 @@ import com.jeesite.common.mybatis.mapper.query.QueryType;
 		@Column(name="alliance_horde", attrName="allianceHorde", label="alliance_horde"),
 		@Column(name="character_specialization", attrName="characterSpecialization", label="character_specialization"),
 		@Column(name="character_realm", attrName="characterRealm", label="character_realm"),
+		@Column(name="character_realm_zone", attrName="characterRealmZone", label="character_realm_zone"),
 		@Column(name="user_id", attrName="userId", label="user_id"),
 	}, orderBy="a.character_id DESC"
 )
@@ -38,6 +39,7 @@ public class NuanxinCharacter extends DataEntity<NuanxinCharacter> {
 	private Integer allianceHorde;		// alliance_horde
 	private String characterSpecialization;		// character_specialization
 	private String characterRealm;		// character_realm
+	private String characterRealmZone;
 	private String userId;		// user_id
 	
 	public NuanxinCharacter() {
@@ -111,6 +113,14 @@ public class NuanxinCharacter extends DataEntity<NuanxinCharacter> {
 
 	public void setCharacterRealm(String characterRealm) {
 		this.characterRealm = characterRealm;
+	}
+	
+	public String getCharacterRealmZone() {
+		return characterRealmZone;
+	}
+	
+	public void setCharacterRealmZone(String characterRealmZone) {
+		this.characterRealmZone = characterRealmZone;
 	}
 	
 	@Length(min=0, max=30, message="user_id长度不能超过 30 个字符")

@@ -100,17 +100,18 @@ public class NuanxinCharacterService extends CrudService<NuanxinCharacterDao, Nu
 	}
 
 	@Transactional(readOnly=false)
-	public Map<String, Object> saveCharacter(String id, String name, String account, String realm, int realmType, int claz,
-			int allianceHorde, String spec, String userId) {
+	public Map<String, Object> saveCharacter(Map<String, String[]> param) {
 		NuanxinCharacter character = new NuanxinCharacter();
-		character.setCharacterName(name);
-		character.setCharacterAccount(account);
-		character.setCharacterRealm(realm);
-		character.setCharacterRealmType(realmType);
-		character.setCharacterClass(claz);
-		character.setAllianceHorde(allianceHorde);
-		character.setCharacterSpecialization(spec);
-		character.setUserId(userId);
+		character.setCharacterName(param.get("characterName")[0]);
+		character.setCharacterAccount(param.get("characterAccount")[0]);
+		character.setCharacterRealm(param.get("characterRealm")[0]);
+		character.setCharacterRealmZone(param.get("characterRealmZone")[0]);
+		character.setCharacterRealmType(Integer.parseInt(param.get("characterRealmType")[0]));
+		character.setCharacterClass(Integer.parseInt(param.get("characterClass")[0]));
+		character.setAllianceHorde(Integer.parseInt(param.get("allianceHorde")[0]));
+		character.setCharacterSpecialization(param.get("characterSpecialization")[0]);
+		character.setUserId(param.get("userId")[0]);
+		String id = param.get("characterId")[0];
 		if (id == null || id.isEmpty()) {
 			character.setCharacterId("CHR" + System.currentTimeMillis() + StringUtil.randomStringNumberUpperCase(4));
 			dao.insert(character);
