@@ -92,7 +92,8 @@ public class NuanxinUserApiController extends BaseController {
 	public Map<String, Object> getCharacterList(HttpServletRequest request, HttpServletResponse response) {
 		String userId = request.getParameter("userId");
 		String accountId = request.getParameter("accountId");
-		return nuanxinCharacterService.getByAccount(userId, accountId);
+		String realmType = request.getParameter("realmType");
+		return nuanxinCharacterService.getByAccount(userId, accountId, realmType);
 	}
 	
 	@ResponseBody

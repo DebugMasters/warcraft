@@ -76,10 +76,16 @@ public class NuanxinCharacterService extends CrudService<NuanxinCharacterDao, Nu
 		super.delete(nuanxinCharacter);
 	}
 	
-	public Map<String, Object> getByAccount(String userId, String accountId) {
+	public Map<String, Object> getByAccount(String userId, String accountId, String realmType) {
 		NuanxinCharacter character = new NuanxinCharacter();
 		character.setUserId(userId);
-		character.setCharacterAccount(accountId);
+		if (realmType != null && !realmType.isEmpty()) {
+			character.setCharacterRealmType(Integer.parseInt(realmType));
+		}
+		if (accountId != null && !accountId.isEmpty()) {
+			character.setCharacterAccount(accountId);
+		}
+		
 		List<NuanxinCharacter> list = dao.findList(character);
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("success", true);
