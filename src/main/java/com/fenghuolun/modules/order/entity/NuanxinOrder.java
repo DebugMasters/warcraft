@@ -29,6 +29,7 @@ import com.jeesite.common.mybatis.annotation.Table;
 		@Column(name="order_money", attrName="orderMoney", label="订单金额", isQuery=false),
 		@Column(name="order_status", attrName="orderStatus", label="订单状态"),
 		@Column(name="character_id", attrName="characterId", label="角色ID", isQuery=false),
+		@Column(name="character_spec", attrName="characterSpec", label="角色专精", isQuery=false),
 		@Column(name="create_time", attrName="createTime", label="下单时间", isQuery=false),
 		@Column(name="account_id", attrName="accountId", label="账户", isQuery=false),
 		@Column(name="account_password", attrName="accountPassword", label="密码", isQuery=false),
@@ -50,6 +51,7 @@ public class NuanxinOrder extends DataEntity<NuanxinOrder> {
 	private Double orderMoney;		// 订单金额
 	private Integer orderStatus;		// 订单状态
 	private String characterId;		// 角色ID
+	private String characterSpec;	// 角色专精
 	private Date createTime;		// 下单时间
 	private String accountId;		// 账户
 	private String accountPassword;		// 密码
@@ -78,7 +80,7 @@ public class NuanxinOrder extends DataEntity<NuanxinOrder> {
 	}
 	
 	@NotBlank(message="用户ID不能为空")
-	@Length(min=0, max=30, message="用户ID长度不能超过 30 个字符")
+	@Length(min=0, max=40, message="用户ID长度不能超过 40 个字符")
 	public String getUserId() {
 		return userId;
 	}
@@ -158,6 +160,14 @@ public class NuanxinOrder extends DataEntity<NuanxinOrder> {
 
 	public void setCharacterId(String characterId) {
 		this.characterId = characterId;
+	}
+	
+	public String getCharacterSpec() {
+		return characterSpec;
+	}
+	
+	public void setCharacterSpec(String characterSpec) {
+		this.characterSpec = characterSpec;
 	}
 	
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

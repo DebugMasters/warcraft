@@ -29,7 +29,7 @@
 					<div class="col-xs-6">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required ">*</span> ${text('catalog_code')}：<i class="fa icon-question hide"></i></label>
+								<span class="required ">*</span> ${text('类目编码')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
 								<#form:hidden path="isNewRecord"/>
 							<#form:input path="catalogCode" maxlength="30" readonly="${!nuanxinTradeCatalog.isNewRecord}" class="form-control required abc"/>
@@ -39,7 +39,7 @@
 					<div class="col-xs-6">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required ">*</span> ${text('catalog_name')}：<i class="fa icon-question hide"></i></label>
+								<span class="required ">*</span> ${text('类目名称')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
 								<#form:input path="catalogName" maxlength="30" class="form-control required"/>
 							</div>
@@ -50,7 +50,7 @@
 					<div class="col-xs-6">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required ">*</span> ${text('catalog_type')}：<i class="fa icon-question hide"></i></label>
+								<span class="required ">*</span> ${text('服务器类型')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
 								<#form:select path="catalogType" dictType="nx_realm_type" class="form-control required digits" />
 							</div>
@@ -59,14 +59,23 @@
 					<div class="col-xs-6">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text('money')}：<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text('展示类型')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="money" class="form-control number"/>
+								<#form:select path="catalogDisplayType" dictType="nx_catalog_display_type" class="form-control required digits" />
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('基础金额')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="money" class="form-control number"/>
+							</div>
+						</div>
+					</div>
 					<div class="col-xs-6">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">

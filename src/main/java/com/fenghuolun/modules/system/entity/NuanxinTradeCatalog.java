@@ -21,6 +21,7 @@ import com.jeesite.common.mybatis.mapper.query.QueryType;
 		@Column(name="catalog_code", attrName="catalogCode", label="catalog_code", isPK=true),
 		@Column(name="catalog_name", attrName="catalogName", label="catalog_name", queryType=QueryType.LIKE, isTreeName=true),
 		@Column(name="catalog_type", attrName="catalogType", label="catalog_type"),
+		@Column(name="catalog_display_type", attrName="catalogDisplayType", label="catalog_display_type"),
 		@Column(name="money", attrName="money", label="money"),
 		@Column(includeEntity=TreeEntity.class),
 		@Column(name="status", attrName="status", label="status", isUpdate=false),
@@ -34,6 +35,7 @@ public class NuanxinTradeCatalog extends TreeEntity<NuanxinTradeCatalog> {
 	private String catalogCode;		// catalog_code
 	private String catalogName;		// catalog_name
 	private Integer catalogType;		// catalog_type
+	private Integer catalogDisplayType;	// 展示类型
 	private Double money;		// money
 	
 	public NuanxinTradeCatalog() {
@@ -79,6 +81,14 @@ public class NuanxinTradeCatalog extends TreeEntity<NuanxinTradeCatalog> {
 
 	public void setCatalogType(Integer catalogType) {
 		this.catalogType = catalogType;
+	}
+	
+	public Integer getCatalogDisplayType() {
+		return catalogDisplayType;
+	}
+	
+	public void setCatalogDisplayType(Integer catalogDisplayType) {
+		this.catalogDisplayType = catalogDisplayType;
 	}
 	
 	public Double getMoney() {
