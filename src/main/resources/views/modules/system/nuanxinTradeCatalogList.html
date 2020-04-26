@@ -19,19 +19,19 @@
 			<#form:form id="searchForm" model="${nuanxinTradeCatalog}" action="${ctx}/system/nuanxinTradeCatalog/listData" method="post" class="form-inline hide"
 					data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
 				<div class="form-group">
-					<label class="control-label">${text('catalog_name')}：</label>
+					<label class="control-label">${text('类目名称')}：</label>
 					<div class="control-inline">
 						<#form:input path="catalogName" maxlength="30" class="form-control width-120"/>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label">${text('catalog_type')}：</label>
+					<label class="control-label">${text('服务器类型')}：</label>
 					<div class="control-inline width-120">
 						<#form:select path="catalogType" dictType="nx_realm_type" blankOption="true" class="form-control"/>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label">${text('money')}：</label>
+					<label class="control-label">${text('基础金额')}：</label>
 					<div class="control-inline">
 						<#form:input path="money" class="form-control width-120"/>
 					</div>
@@ -57,14 +57,18 @@
 $('#dataGrid').dataGrid({
 	searchForm: $("#searchForm"),
 	columnModel: [
-		{header:'${text("catalog_name")}', name:'catalogName', index:'a.catalog_name', width:250, align:"left", frozen:true, formatter: function(val, obj, row, act){
+		{header:'${text("类目名称")}', name:'catalogName', index:'a.catalog_name', width:250, align:"left", frozen:true, formatter: function(val, obj, row, act){
 			return '( '+row.catalogCode+' ) '+'<a href="${ctx}/system/nuanxinTradeCatalog/form?catalogCode='+row.catalogCode+'" class="btnList" data-title="${text("编辑代练类型")}">'+(val||row.id)+'</a>';
 		}},
-		{header:'${text("catalog_name")}', name:'catalogName', index:'a.catalog_name', width:150, align:"left"},
-		{header:'${text("catalog_type")}', name:'catalogType', index:'a.catalog_type', width:150, align:"center", formatter: function(val, obj, row, act){
+		{header:'${text("类目名称")}', name:'catalogName', index:'a.catalog_name', width:150, align:"left"},
+		{header:'${text("服务器类型")}', name:'catalogType', index:'a.catalog_type', width:150, align:"center", formatter: function(val, obj, row, act){
 			return js.getDictLabel(${@DictUtils.getDictListJson('nx_realm_type')}, val, '${text("未知")}', true);
 		}},
-		{header:'${text("money")}', name:'money', index:'a.money', width:150, align:"right", formatter: function(val, obj, row, act){
+		{header:'${text("展示类型")}', name:'catalogDisplayType', index:'a.catalog_display_type', width:150, align:"center", formatter: function(val, obj, row, act){
+			return js.getDictLabel(${@DictUtils.getDictListJson('nx_catalog_display_type')}, val, '${text("未知")}', true);
+		}},
+		{header:'${text("展示标题")}', name:'catalogDisplayName', index:'a.catalog_display_name', width:150, align:"left"},
+		{header:'${text("基础金额")}', name:'money', index:'a.money', width:150, align:"right", formatter: function(val, obj, row, act){
 			return js.formatNumber(val, 2, false, ''); // 数值类型格式化 (原始数值, 小数位数, 是否千分位, 默认值，金额情况下设置0.00);
 		}},
 		{header:'${text("status")}', name:'status', index:'a.status', width:150, align:"center", formatter: function(val, obj, row, act){

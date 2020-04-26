@@ -29,7 +29,7 @@
 					<div class="col-xs-6">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required ">*</span> ${text('类目编码')}：<i class="fa icon-question hide"></i></label>
+								<span class="required ">*</span> ${text('类目ID')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
 								<#form:hidden path="isNewRecord"/>
 							<#form:input path="catalogCode" maxlength="30" readonly="${!nuanxinTradeCatalog.isNewRecord}" class="form-control required abc"/>
@@ -61,12 +61,21 @@
 							<label class="control-label col-sm-4" title="">
 								<span class="required hide">*</span> ${text('展示类型')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:select path="catalogDisplayType" dictType="nx_catalog_display_type" class="form-control required digits" />
+								<#form:select path="catalogDisplayType" dictType="nx_catalog_display_type" blankOption="true" class="form-control digits" />
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('展示标题')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="catalogDisplayName" maxlength="20" class="form-control"/>
+							</div>
+						</div>
+					</div>
 					<div class="col-xs-6">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
@@ -76,6 +85,8 @@
 							</div>
 						</div>
 					</div>
+				</div>
+				<div class="row">
 					<div class="col-xs-6">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
