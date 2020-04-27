@@ -5,6 +5,9 @@ package com.fenghuolun.modules.user.dao;
 
 import com.jeesite.common.dao.CrudDao;
 import com.jeesite.common.mybatis.annotation.MyBatisDao;
+
+import java.util.List;
+
 import com.fenghuolun.modules.user.entity.NuanxinCharacter;
 
 /**
@@ -15,4 +18,5 @@ import com.fenghuolun.modules.user.entity.NuanxinCharacter;
 @MyBatisDao
 public interface NuanxinCharacterDao extends CrudDao<NuanxinCharacter> {
 	public int deleteByAccountId(String accountId);
+	public List<NuanxinCharacter> findListNew(NuanxinCharacter nuanxinCharacter);
 }

@@ -85,8 +85,9 @@ public class NuanxinCharacterService extends CrudService<NuanxinCharacterDao, Nu
 		if (accountId != null && !accountId.isEmpty()) {
 			character.setCharacterAccount(accountId);
 		}
-		
-		List<NuanxinCharacter> list = dao.findList(character);
+
+//		List<NuanxinCharacter> list = dao.findList(character);
+		List<NuanxinCharacter> list = dao.findListNew(character);
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("success", true);
 		result.put("msg", "查询成功");
