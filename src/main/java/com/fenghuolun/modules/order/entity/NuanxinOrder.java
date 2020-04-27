@@ -23,12 +23,14 @@ import com.jeesite.common.mybatis.annotation.Table;
 		@Column(name="user_id", attrName="userId", label="用户ID"),
 		@Column(name="order_type", attrName="orderType", label="订单类型", isQuery=false),
 		@Column(name="order_server", attrName="orderServer", label="服务器类型"),
+		@Column(name="order_catalog", attrName="orderCatalog", label="代练类别文字"),
 		@Column(name="order_catalog_1", attrName="orderCatalog1", label="代练类别1"),
 		@Column(name="order_catalog_2", attrName="orderCatalog2", label="代练类别2"),
 		@Column(name="order_catalog_3", attrName="orderCatalog3", label="代练类别3"),
 		@Column(name="order_money", attrName="orderMoney", label="订单金额", isQuery=false),
 		@Column(name="order_status", attrName="orderStatus", label="订单状态"),
 		@Column(name="character_id", attrName="characterId", label="角色ID", isQuery=false),
+		@Column(name="character_name", attrName="characterName", label="角色名称", isQuery=false),
 		@Column(name="character_spec", attrName="characterSpec", label="角色专精", isQuery=false),
 		@Column(name="create_time", attrName="createTime", label="下单时间", isQuery=false),
 		@Column(name="account_id", attrName="accountId", label="账户", isQuery=false),
@@ -45,12 +47,14 @@ public class NuanxinOrder extends DataEntity<NuanxinOrder> {
 	private String userId;		// 用户ID
 	private Integer orderType;		// 订单类型
 	private Integer orderServer;		// 服务器类型
+	private String orderCatalog;		// 代练类别文字
 	private String orderCatalog1;		// 代练类别1
 	private String orderCatalog2;		// 代练类别2
 	private String orderCatalog3;		// 代练类别3
 	private Double orderMoney;		// 订单金额
 	private Integer orderStatus;		// 订单状态
 	private String characterId;		// 角色ID
+	private String characterName;	// 角色名称
 	private String characterSpec;	// 角色专精
 	private Date createTime;		// 下单时间
 	private String accountId;		// 账户
@@ -59,9 +63,9 @@ public class NuanxinOrder extends DataEntity<NuanxinOrder> {
 	private String phone;		// 手机
 	private String note;		// 备注
 	
-	private String catalogName1;
-	private String catalogName2;
-	private String catalogName3;
+	private String realmZone;
+	private String realmName;
+	private String accountName;
 	
 	public NuanxinOrder() {
 		this(null);
@@ -105,6 +109,14 @@ public class NuanxinOrder extends DataEntity<NuanxinOrder> {
 
 	public void setOrderServer(Integer orderServer) {
 		this.orderServer = orderServer;
+	}
+	
+	public String getOrderCatalog() {
+		return orderCatalog;
+	}
+	
+	public void setOrderCatalog(String orderCatalog) {
+		this.orderCatalog = orderCatalog;
 	}
 	
 	@Length(min=0, max=20, message="代练类别1长度不能超过 20 个字符")
@@ -160,6 +172,14 @@ public class NuanxinOrder extends DataEntity<NuanxinOrder> {
 
 	public void setCharacterId(String characterId) {
 		this.characterId = characterId;
+	}
+	
+	public String getCharacterName() {
+		return characterName;
+	}
+	
+	public void setCharacterName(String characterName) {
+		this.characterName = characterName;
 	}
 	
 	public String getCharacterSpec() {
@@ -223,27 +243,27 @@ public class NuanxinOrder extends DataEntity<NuanxinOrder> {
 		this.note = note;
 	}
 	
-	public String getCatalogName1() {
-		return catalogName1;
+	public String getRealmZone() {
+		return realmZone;
 	}
 	
-	public void setCatalogName1(String catalogName1) {
-		this.catalogName1 = catalogName1;
+	public void setRealmZone(String realmZone) {
+		this.realmZone = realmZone;
 	}
 	
-	public String getCatalogName2() {
-		return catalogName2;
+	public String getRealmName() {
+		return realmName;
 	}
 	
-	public void setCatalogName2(String catalogName2) {
-		this.catalogName2 = catalogName2;
+	public void setRealmName(String realmName) {
+		this.realmName = realmName;
 	}
 	
-	public String getCatalogName3() {
-		return catalogName3;
+	public String getAccountName() {
+		return accountName;
 	}
 	
-	public void setCatalogName3(String catalogName3) {
-		this.catalogName3 = catalogName3;
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
 	}
 }

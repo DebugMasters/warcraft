@@ -14,13 +14,13 @@
 	
 	<select id="orderList" resultType="NuanxinOrder">
 		SELECT a.*, 
-			b.catalog_name AS "catalogName1", 
-			c.catalog_name AS "catalogName2", 
-			d.catalog_name AS "catalogName3" 
+			b.character_realm_zone AS "realmZone", 
+			c.realm_name AS "realmName", 
+			d.account_name AS "accountName" 
 		FROM nuanxin_order a 
-		LEFT JOIN nuanxin_trade_catalog b ON a.order_catalog_1 = b.catalog_code 
-		LEFT JOIN nuanxin_trade_catalog c ON a.order_catalog_2 = c.catalog_code 
-		LEFT JOIN nuanxin_trade_catalog d ON a.order_catalog_3 = d.catalog_code 
+		LEFT JOIN nuanxin_character b ON a.character_id = b.character_id 
+		LEFT JOIN nuanxin_realm_list c ON b.character_realm = c.realm_id
+		LEFT JOIN nuanxin_account d ON b.character_account = d.account_id
 		<where>
 			<if test="userId != null and userId != ''">
 				AND a.user_id = #{userId} 

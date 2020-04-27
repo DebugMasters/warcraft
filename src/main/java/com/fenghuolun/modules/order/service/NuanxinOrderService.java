@@ -15,7 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.jeesite.common.entity.Page;
 import com.jeesite.common.service.CrudService;
 import com.fenghuolun.modules.order.entity.NuanxinOrder;
+import com.fenghuolun.modules.user.dao.NuanxinCharacterDao;
 import com.fenghuolun.modules.user.dao.NuanxinUserDao;
+import com.fenghuolun.modules.user.entity.NuanxinCharacter;
 import com.fenghuolun.modules.user.entity.NuanxinUser;
 import com.fenghuolun.modules.utils.StringUtil;
 import com.fenghuolun.modules.utils.WechatUtil;
@@ -32,6 +34,8 @@ public class NuanxinOrderService extends CrudService<NuanxinOrderDao, NuanxinOrd
 	
 	@Autowired
 	private NuanxinUserDao nuanxinUserDao;
+	@Autowired
+	private NuanxinCharacterDao nuanxinCharacterDao;
 	
 	/**
 	 * 获取单条数据
@@ -87,17 +91,29 @@ public class NuanxinOrderService extends CrudService<NuanxinOrderDao, NuanxinOrd
 	@Transactional(readOnly=false)
 	public Map<String, Object> saveOrder(Map<String, String[]> param) {
 		Map<String, Object> result = new HashMap<>();
+		String characterId = param.get("characterId")[0];
+		NuanxinCharacter character = new NuanxinCharacter();
+		character.setCharacterId(characterId);
+		List<NuanxinCharacter> characterList = nuanxinCharacterDao.findListNew(character);
+		if (characterList == null || characterList.size() <= 0) {
+			result.put("success", false);
+			result.put("msg", "角色信息错误");
+			return result;
+		}
+		
 		NuanxinOrder order = new NuanxinOrder();
 		order.setOrderId("ODR" + System.currentTimeMillis() + StringUtil.randomStringNumberUpperCase(4));
 		order.setUserId(param.get("userId")[0]);
 		order.setOrderType(Integer.parseInt(param.get("orderType")[0]));
 		order.setOrderServer(Integer.parseInt(param.get("orderServer")[0]));
+		order.setOrderCatalog(param.get("orderCatalog")[0]);
 		order.setOrderCatalog1(param.get("orderCatalog1")[0]);
 		order.setOrderCatalog2(param.get("orderCatalog2")[0]);
 		order.setOrderCatalog3(param.get("orderCatalog3")[0]);
 		order.setOrderMoney(Double.parseDouble(param.get("orderMoney")[0]));
 		order.setOrderStatus(0);
 		order.setCharacterId(param.get("characterId")[0]);
+		order.setCharacterName(characterList.get(0).getCharacterName());
 		order.setCharacterSpec(param.get("characterSpec")[0]);
 		order.setCreateTime(new Date());
 		order.setAccountId(param.get("accountId")[0]);
