@@ -17,6 +17,8 @@ import com.fenghuolun.modules.user.entity.NuanxinUser;
 import com.fenghuolun.modules.utils.StringUtil;
 import com.fenghuolun.modules.utils.WechatUtil;
 import com.fenghuolun.modules.utils.entity.JSCode2SessionResponse;
+import com.fenghuolun.modules.order.dao.NuanxinOrderDao;
+import com.fenghuolun.modules.order.entity.NuanxinOrder;
 import com.fenghuolun.modules.system.dao.NuanxinConfigDao;
 import com.fenghuolun.modules.user.dao.NuanxinUserDao;
 
@@ -31,6 +33,8 @@ public class NuanxinUserService extends CrudService<NuanxinUserDao, NuanxinUser>
 	
 	@Autowired
 	private NuanxinConfigDao nuanxinConfigDao;
+	@Autowired
+	private NuanxinOrderDao nuanxinOrderDao;
 	
 	/**
 	 * 获取单条数据
@@ -128,11 +132,14 @@ public class NuanxinUserService extends CrudService<NuanxinUserDao, NuanxinUser>
 			result.put("msg", "未找到用户");
 		}
 		else {
+			NuanxinOrder order = new NuanxinOrder();
+			order.setUserId(userId);
+			long orderCount = nuanxinOrderDao.findCount(order);
 			result.put("success", true);
 			result.put("msg", "查询成功");
 			result.put("userInfo", user);
 			result.put("coupon", 1);
-			result.put("order", 2);
+			result.put("order", orderCount);
 		}
 		return result;
 	}

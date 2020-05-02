@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fenghuolun.modules.order.dao.NuanxinCouponDao">
+	
+	<!-- 查询数据
+	<select id="findList" resultType="NuanxinCoupon">
+		SELECT ${sqlMap.column.toSql()}
+		FROM ${sqlMap.table.toSql()}
+		<where>
+			${sqlMap.where.toSql()}
+		</where>
+		ORDER BY ${sqlMap.order.toSql()}
+	</select> -->
+	
+	<select id="getByUser" parameterType="java.lang.String" resultType="NuanxinCoupon">
+		SELECT * FROM nuanxin_coupon 
+		<where>
+			<if test="_parameter != null and _parameter != ''">
+				AND user_id = #{userId} 
+			</if>
+			AND expire_time >= NOW()
+		</where>
+	</select>
+</mapper>

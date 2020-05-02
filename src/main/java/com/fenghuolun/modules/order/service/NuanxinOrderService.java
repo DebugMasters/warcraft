@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.jeesite.common.entity.Page;
 import com.jeesite.common.service.CrudService;
+import com.fenghuolun.modules.order.entity.NuanxinCoupon;
 import com.fenghuolun.modules.order.entity.NuanxinOrder;
 import com.fenghuolun.modules.user.dao.NuanxinCharacterDao;
 import com.fenghuolun.modules.user.dao.NuanxinUserDao;
@@ -21,6 +22,7 @@ import com.fenghuolun.modules.user.entity.NuanxinCharacter;
 import com.fenghuolun.modules.user.entity.NuanxinUser;
 import com.fenghuolun.modules.utils.StringUtil;
 import com.fenghuolun.modules.utils.WechatUtil;
+import com.fenghuolun.modules.order.dao.NuanxinCouponDao;
 import com.fenghuolun.modules.order.dao.NuanxinOrderDao;
 
 /**
@@ -36,6 +38,8 @@ public class NuanxinOrderService extends CrudService<NuanxinOrderDao, NuanxinOrd
 	private NuanxinUserDao nuanxinUserDao;
 	@Autowired
 	private NuanxinCharacterDao nuanxinCharacterDao;
+	@Autowired
+	private NuanxinCouponDao nuanxinCouponDao;
 	
 	/**
 	 * 获取单条数据
@@ -145,6 +149,41 @@ public class NuanxinOrderService extends CrudService<NuanxinOrderDao, NuanxinOrd
 		result.put("success", true);
 		result.put("msg", "查询成功");
 		result.put("orderList", list);
+		return result;
+	}
+	
+	public Map<String, Object> todaysOrder() {
+		Map<String, Object> result = new HashMap<>();
+		long count = dao.todaysOrder();
+		result.put("success", true);
+		result.put("msg", "查询成功");
+		result.put("count", count);
+		return result;
+	}
+	
+	public Map<String, Object> availableCoupon(String userId) {
+		Map<String, Object> result = new HashMap<>();
+		List<NuanxinCoupon> list = nuanxinCouponDao.getByUser(userId);
+		result.put("success", true);
+		result.put("msg", "查询成功");
+		result.put("couponList", list);
+		return result;
+	}
+	
+	public Map<String, Object> orderDetail(String userId, String orderId) {
+		Map<String, Object> result = new HashMap<>();
+		NuanxinOrder order = new NuanxinOrder();
+		order.setUserId(userId);
+		order.setOrderId(orderId);
+		List<NuanxinOrder> list = dao.findList(order);
+		if (list == null || list.size() == 0) {
+			result.put("success", false);
+			result.put("msg", "未找到订单");
+			return result;
+		}
+		result.put("success", true);
+		result.put("msg", "查询成功");
+		result.put("data", list.get(0));
 		return result;
 	}
 }

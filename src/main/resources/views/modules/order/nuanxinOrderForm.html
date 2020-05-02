@@ -19,16 +19,7 @@
 							<label class="control-label col-sm-4" title="">
 								<span class="required ">*</span> ${text('用户ID')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="userId" maxlength="30" class="form-control required"/>
-							</div>
-						</div>
-					</div>
-					<div class="col-xs-6">
-						<div class="form-group">
-							<label class="control-label col-sm-4" title="">
-								<span class="required ">*</span> ${text('订单类型')}：<i class="fa icon-question hide"></i></label>
-							<div class="col-sm-8">
-								<#form:select path="orderType" dictType="nx_order_type" class="form-control required digits" />
+								<#form:input path="userId" maxlength="40" class="form-control required" readonly="true"/>
 							</div>
 						</div>
 					</div>
@@ -37,9 +28,29 @@
 					<div class="col-xs-6">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required ">*</span> ${text('服务器类型')}：<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text('订单类型')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:select path="orderServer" dictType="nx_realm_type" class="form-control required digits" />
+								<#form:select path="orderType" dictType="nx_order_type" class="form-control required digits" readonly="true"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('服务器类型')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:select path="orderServer" dictType="nx_realm_type" class="form-control required digits" readonly="true"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('代练内容')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="orderCatalog" maxlength="20" class="form-control" readonly="true"/>
 							</div>
 						</div>
 					</div>
@@ -48,7 +59,7 @@
 							<label class="control-label col-sm-4" title="">
 								<span class="required hide">*</span> ${text('代练类别1')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="orderCatalog1" maxlength="20" class="form-control"/>
+								<#form:input path="orderCatalog1" maxlength="20" class="form-control" readonly="true"/>
 							</div>
 						</div>
 					</div>
@@ -59,7 +70,7 @@
 							<label class="control-label col-sm-4" title="">
 								<span class="required hide">*</span> ${text('代练类别2')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="orderCatalog2" maxlength="20" class="form-control"/>
+								<#form:input path="orderCatalog2" maxlength="20" class="form-control" readonly="true"/>
 							</div>
 						</div>
 					</div>
@@ -68,7 +79,7 @@
 							<label class="control-label col-sm-4" title="">
 								<span class="required hide">*</span> ${text('代练类别3')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="orderCatalog3" maxlength="20" class="form-control"/>
+								<#form:input path="orderCatalog3" maxlength="20" class="form-control" readonly="true"/>
 							</div>
 						</div>
 					</div>
@@ -79,7 +90,7 @@
 							<label class="control-label col-sm-4" title="">
 								<span class="required ">*</span> ${text('订单金额')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="orderMoney" class="form-control required number"/>
+								<#form:input path="orderMoney" class="form-control required number" readonly="true"/>
 							</div>
 						</div>
 					</div>
@@ -97,19 +108,59 @@
 					<div class="col-xs-6">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required ">*</span> ${text('角色ID')}：<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text('下单时间')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="characterId" maxlength="30" class="form-control required"/>
+								<#form:input path="createTime" readonly="true" maxlength="20" class="form-control Wdate"
+									dataFormat="datetime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:true});"/>
 							</div>
 						</div>
 					</div>
 					<div class="col-xs-6">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text('下单时间')}：<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text('角色ID')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="createTime" readonly="true" maxlength="20" class="form-control Wdate"
-									dataFormat="datetime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:true});"/>
+								<#form:input path="characterId" maxlength="30" class="form-control required" readonly="true"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('角色名称')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="characterName" maxlength="30" class="form-control required" readonly="true"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('角色专精')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="characterSpec" maxlength="30" class="form-control required" readonly="true"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('角色子账户')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="accountName" maxlength="30" class="form-control required" readonly="true"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required ">*</span> ${text('角色服务器')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="realmName" maxlength="30" class="form-control required" readonly="true"/>
 							</div>
 						</div>
 					</div>
@@ -120,7 +171,7 @@
 							<label class="control-label col-sm-4" title="">
 								<span class="required hide">*</span> ${text('账户')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="accountId" maxlength="30" class="form-control"/>
+								<#form:input path="accountId" maxlength="30" class="form-control" readonly="true"/>
 							</div>
 						</div>
 					</div>
@@ -129,7 +180,7 @@
 							<label class="control-label col-sm-4" title="">
 								<span class="required hide">*</span> ${text('密码')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="accountPassword" maxlength="30" class="form-control"/>
+								<#form:input type="password" path="accountPassword" maxlength="30" class="form-control" readonly="true"/>
 							</div>
 						</div>
 					</div>
@@ -140,7 +191,7 @@
 							<label class="control-label col-sm-4" title="">
 								<span class="required hide">*</span> ${text('是否有安全令')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:select path="saveguard" dictType="sys_yes_no" blankOption="true" class="form-control digits" />
+								<#form:select path="saveguard" dictType="sys_yes_no" blankOption="true" class="form-control digits" readonly="true"/>
 							</div>
 						</div>
 					</div>
@@ -160,7 +211,7 @@
 							<label class="control-label col-sm-4" title="">
 								<span class="required hide">*</span> ${text('备注')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="note" maxlength="255" class="form-control"/>
+								<#form:textarea path="note" maxlength="255" class="form-control" rows="4"/>
 							</div>
 						</div>
 					</div>
@@ -171,6 +222,7 @@
 					<div class="col-sm-offset-2 col-sm-10">
 						<% if (hasPermi('order:nuanxinOrder:edit')){ %>
 							<button type="submit" class="btn btn-sm btn-primary" id="btnSubmit"><i class="fa fa-check"></i> ${text('保 存')}</button>&nbsp;
+							<button type="button" class="btn btn-sm btn-warning" id="btnPasswd"><i class="fa fa-info"></i> ${text('查看密码')}</button>&nbsp;
 						<% } %>
 						<button type="button" class="btn btn-sm btn-default" id="btnCancel" onclick="js.closeCurrentTabPage()"><i class="fa fa-reply-all"></i> ${text('关 闭')}</button>
 					</div>
@@ -192,5 +244,9 @@ $("#inputForm").validate({
 			}
 		}, "json");
     }
+});
+
+$("#btnPasswd").click(function() {
+	alert("password...");
 });
 </script>

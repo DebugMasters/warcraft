@@ -25,7 +25,7 @@ import com.fenghuolun.modules.system.service.NuanxinRealmListService;
 /**
  * nuanxin_realm_listController
  * @author zhengxiaotai
- * @version 2020-03-26
+ * @version 2020-04-28
  */
 @Controller
 @RequestMapping(value = "${adminPath}/system/nuanxinRealmList")
@@ -38,8 +38,8 @@ public class NuanxinRealmListController extends BaseController {
 	 * 获取数据
 	 */
 	@ModelAttribute
-	public NuanxinRealmList get(Integer realmId, boolean isNewRecord) {
-		return nuanxinRealmListService.get(realmId + "", isNewRecord);
+	public NuanxinRealmList get(String realmId, boolean isNewRecord) {
+		return nuanxinRealmListService.get(realmId, isNewRecord);
 	}
 	
 	/**
@@ -82,7 +82,7 @@ public class NuanxinRealmListController extends BaseController {
 	@ResponseBody
 	public String save(@Validated NuanxinRealmList nuanxinRealmList) {
 		nuanxinRealmListService.save(nuanxinRealmList);
-		return renderResult(Global.TRUE, text("保存nuanxin_realm_list成功！"));
+		return renderResult(Global.TRUE, text("保存服务器信息成功！"));
 	}
 	
 	/**
@@ -93,7 +93,7 @@ public class NuanxinRealmListController extends BaseController {
 	@ResponseBody
 	public String delete(NuanxinRealmList nuanxinRealmList) {
 		nuanxinRealmListService.delete(nuanxinRealmList);
-		return renderResult(Global.TRUE, text("删除nuanxin_realm_list成功！"));
+		return renderResult(Global.TRUE, text("删除服务器信息成功！"));
 	}
 	
 }

@@ -19,4 +19,5 @@ import com.fenghuolun.modules.user.entity.NuanxinCharacter;
 public interface NuanxinCharacterDao extends CrudDao<NuanxinCharacter> {
 	public int deleteByAccountId(String accountId);
 	public List<NuanxinCharacter> findListNew(NuanxinCharacter nuanxinCharacter);
+	public NuanxinCharacter getById (String characterId);
 }

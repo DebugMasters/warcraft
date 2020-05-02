@@ -3,12 +3,12 @@
 	<div class="box box-main">
 		<div class="box-header">
 			<div class="box-title">
-				<i class="fa icon-notebook"></i> ${text('nuanxin_realm_list管理')}
+				<i class="fa icon-notebook"></i> ${text('服务器管理')}
 			</div>
 			<div class="box-tools pull-right">
 				<a href="#" class="btn btn-default" id="btnSearch" title="${text('查询')}"><i class="fa fa-filter"></i> ${text('查询')}</a>
 				<% if(hasPermi('system:nuanxinRealmList:edit')){ %>
-					<a href="${ctx}/system/nuanxinRealmList/form" class="btn btn-default btnTool" title="${text('新增nuanxin_realm_list')}"><i class="fa fa-plus"></i> ${text('新增')}</a>
+					<a href="${ctx}/system/nuanxinRealmList/form" class="btn btn-default btnTool" title="${text('新增服务器')}"><i class="fa fa-plus"></i> ${text('新增')}</a>
 				<% } %>
 			</div>
 		</div>
@@ -16,19 +16,19 @@
 			<#form:form id="searchForm" model="${nuanxinRealmList}" action="${ctx}/system/nuanxinRealmList/listData" method="post" class="form-inline hide"
 					data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
 				<div class="form-group">
-					<label class="control-label">${text('realm_name')}：</label>
+					<label class="control-label">${text('服务器名称')}：</label>
 					<div class="control-inline">
 						<#form:input path="realmName" maxlength="20" class="form-control width-120"/>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label">${text('realm_zone')}：</label>
+					<label class="control-label">${text('服务器区域')}：</label>
 					<div class="control-inline">
 						<#form:input path="realmZone" maxlength="11" class="form-control width-120"/>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label">${text('realm_type')}：</label>
+					<label class="control-label">${text('服务器类型')}：</label>
 					<div class="control-inline width-120">
 						<#form:select path="realmType" dictType="nx_realm_type" blankOption="true" class="form-control"/>
 					</div>
@@ -49,18 +49,19 @@
 $('#dataGrid').dataGrid({
 	searchForm: $("#searchForm"),
 	columnModel: [
-		{header:'${text("realm_name")}', name:'realmName', index:'a.realm_name', width:150, align:"left", frozen:true, formatter: function(val, obj, row, act){
+		{header:'${text("ID")}', name:'realmId', index:'a.realm_id', width:150, align:"left", frozen:true, formatter: function(val, obj, row, act){
 			return '<a href="${ctx}/system/nuanxinRealmList/form?realmId='+row.realmId+'" class="btnList" data-title="${text("编辑nuanxin_realm_list")}">'+(val||row.id)+'</a>';
 		}},
-		{header:'${text("realm_zone")}', name:'realmZone', index:'a.realm_zone', width:150, align:"center"},
-		{header:'${text("realm_type")}', name:'realmType', index:'a.realm_type', width:150, align:"center", formatter: function(val, obj, row, act){
+		{header:'${text("服务器名称")}', name:'realmName', index:'a.realm_name', width:150, align:"left"},
+		{header:'${text("服务器区域")}', name:'realmZone', index:'a.realm_zone', width:150, align:"center"},
+		{header:'${text("服务器类型")}', name:'realmType', index:'a.realm_type', width:150, align:"center", formatter: function(val, obj, row, act){
 			return js.getDictLabel(${@DictUtils.getDictListJson('nx_realm_type')}, val, '${text("未知")}', true);
 		}},
 		{header:'${text("操作")}', name:'actions', width:120, sortable:false, title:false, formatter: function(val, obj, row, act){
 			var actions = [];
 			<% if(hasPermi('system:nuanxinRealmList:edit')){ %>
-				actions.push('<a href="${ctx}/system/nuanxinRealmList/form?realmId='+row.realmId+'" class="btnList" title="${text("编辑nuanxin_realm_list")}"><i class="fa fa-pencil"></i></a>&nbsp;');
-				actions.push('<a href="${ctx}/system/nuanxinRealmList/delete?realmId='+row.realmId+'" class="btnList" title="${text("删除nuanxin_realm_list")}" data-confirm="${text("确认要删除该nuanxin_realm_list吗？")}"><i class="fa fa-trash-o"></i></a>&nbsp;');
+				actions.push('<a href="${ctx}/system/nuanxinRealmList/form?realmId='+row.realmId+'" class="btnList" title="${text("编辑服务器信息")}"><i class="fa fa-pencil"></i></a>&nbsp;');
+				actions.push('<a href="${ctx}/system/nuanxinRealmList/delete?realmId='+row.realmId+'" class="btnList" title="${text("删除服务器信息")}" data-confirm="${text("确认要删除该服务器信息吗？")}"><i class="fa fa-trash-o"></i></a>&nbsp;');
 			<% } %>
 			return actions.join('');
 		}}

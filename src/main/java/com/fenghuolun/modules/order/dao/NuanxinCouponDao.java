@@ -8,15 +8,14 @@ import com.jeesite.common.mybatis.annotation.MyBatisDao;
 
 import java.util.List;
 
-import com.fenghuolun.modules.order.entity.NuanxinOrder;
+import com.fenghuolun.modules.order.entity.NuanxinCoupon;
 
 /**
- * nuanxin_orderDAO接口
+ * nuanxin_couponDAO接口
  * @author zhengxiaotai
- * @version 2020-04-13
+ * @version 2020-05-02
  */
 @MyBatisDao
-public interface NuanxinOrderDao extends CrudDao<NuanxinOrder> {
-	public List<NuanxinOrder> orderList(NuanxinOrder order);
-	public long todaysOrder();
+public interface NuanxinCouponDao extends CrudDao<NuanxinCoupon> {
+	public List<NuanxinCoupon> getByUser(String userId);
 }

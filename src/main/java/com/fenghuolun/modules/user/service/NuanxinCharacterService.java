@@ -144,4 +144,8 @@ public class NuanxinCharacterService extends CrudService<NuanxinCharacterDao, Nu
 		result.put("msg", "删除成功");
 		return result;
 	}
+	
+	public NuanxinCharacter getById (String characterId) {
+		return dao.getById(characterId);
+	}
 }

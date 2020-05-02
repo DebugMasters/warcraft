@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jeesite.common.entity.DataEntity;
 import com.jeesite.common.mybatis.annotation.Column;
 import com.jeesite.common.mybatis.annotation.Table;
+import com.jeesite.common.mybatis.mapper.query.QueryType;
 
 /**
  * nuanxin_orderEntity
@@ -23,14 +24,14 @@ import com.jeesite.common.mybatis.annotation.Table;
 		@Column(name="user_id", attrName="userId", label="用户ID"),
 		@Column(name="order_type", attrName="orderType", label="订单类型", isQuery=false),
 		@Column(name="order_server", attrName="orderServer", label="服务器类型"),
-		@Column(name="order_catalog", attrName="orderCatalog", label="代练类别文字"),
+		@Column(name="order_catalog", attrName="orderCatalog", label="代练类别文字", queryType=QueryType.LIKE),
 		@Column(name="order_catalog_1", attrName="orderCatalog1", label="代练类别1"),
 		@Column(name="order_catalog_2", attrName="orderCatalog2", label="代练类别2"),
 		@Column(name="order_catalog_3", attrName="orderCatalog3", label="代练类别3"),
 		@Column(name="order_money", attrName="orderMoney", label="订单金额", isQuery=false),
 		@Column(name="order_status", attrName="orderStatus", label="订单状态"),
 		@Column(name="character_id", attrName="characterId", label="角色ID", isQuery=false),
-		@Column(name="character_name", attrName="characterName", label="角色名称", isQuery=false),
+		@Column(name="character_name", attrName="characterName", label="角色名称", queryType=QueryType.LIKE),
 		@Column(name="character_spec", attrName="characterSpec", label="角色专精", isQuery=false),
 		@Column(name="create_time", attrName="createTime", label="下单时间", isQuery=false),
 		@Column(name="account_id", attrName="accountId", label="账户", isQuery=false),
@@ -66,6 +67,7 @@ public class NuanxinOrder extends DataEntity<NuanxinOrder> {
 	private String realmZone;
 	private String realmName;
 	private String accountName;
+	private String userName;
 	
 	public NuanxinOrder() {
 		this(null);
@@ -266,4 +268,13 @@ public class NuanxinOrder extends DataEntity<NuanxinOrder> {
 	public void setAccountName(String accountName) {
 		this.accountName = accountName;
 	}
+	
+	public String getUserName() {
+		return userName;
+	}
+	
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	
 }

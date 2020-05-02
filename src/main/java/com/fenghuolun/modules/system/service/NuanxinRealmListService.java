@@ -9,12 +9,13 @@ import org.springframework.transaction.annotation.Transactional;
 import com.jeesite.common.entity.Page;
 import com.jeesite.common.service.CrudService;
 import com.fenghuolun.modules.system.entity.NuanxinRealmList;
+import com.fenghuolun.modules.utils.StringUtil;
 import com.fenghuolun.modules.system.dao.NuanxinRealmListDao;
 
 /**
  * nuanxin_realm_listService
  * @author zhengxiaotai
- * @version 2020-03-26
+ * @version 2020-04-28
  */
 @Service
 @Transactional(readOnly=true)
@@ -48,7 +49,13 @@ public class NuanxinRealmListService extends CrudService<NuanxinRealmListDao, Nu
 	@Override
 	@Transactional(readOnly=false)
 	public void save(NuanxinRealmList nuanxinRealmList) {
-		super.save(nuanxinRealmList);
+		if (nuanxinRealmList.getRealmId() == null || nuanxinRealmList.getRealmId().isEmpty()) {
+			nuanxinRealmList.setRealmId("RM" + System.currentTimeMillis() + StringUtil.randomStringNumberUpperCase(2));
+			super.insert(nuanxinRealmList);
+		}
+		else {
+			super.save(nuanxinRealmList);
+		}
 	}
 	
 	/**

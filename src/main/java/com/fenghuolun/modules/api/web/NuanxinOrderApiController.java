@@ -64,4 +64,46 @@ public class NuanxinOrderApiController {
 		}
 		return nuanxinOrderService.orderList(userId);
 	}
+	
+	/*
+	 * 今日订单数
+	 */
+	@ResponseBody
+	@RequestMapping(value = "todaysOrder")
+	public Map<String, Object> todaysOrder(HttpServletRequest request, HttpServletResponse response) {
+		return nuanxinOrderService.todaysOrder();
+	}
+
+	/*
+	 * 可用优惠券
+	 */
+	@ResponseBody
+	@RequestMapping(value = "availableCoupon")
+	public Map<String, Object> availableCoupon(HttpServletRequest request, HttpServletResponse response) {
+		String userId = request.getParameter("userId");
+		if (userId == null || userId.isEmpty()) {
+			Map<String, Object> result = new HashMap<>();
+			result.put("success", false);
+			result.put("msg", "用户信息错误");
+			return result;
+		}
+		return nuanxinOrderService.availableCoupon(userId);
+	}
+	
+	/*
+	 * 订单详情
+	 */
+	@ResponseBody
+	@RequestMapping(value = "orderDetail")
+	public Map<String, Object> orderDetail(HttpServletRequest request, HttpServletResponse response) {
+		String userId = request.getParameter("userId");
+		String orderId = request.getParameter("orderId");
+		if (userId == null || userId.isEmpty()) {
+			Map<String, Object> result = new HashMap<>();
+			result.put("success", false);
+			result.put("msg", "用户信息错误");
+			return result;
+		}
+		return nuanxinOrderService.orderDetail(userId, orderId);
+	}
 }

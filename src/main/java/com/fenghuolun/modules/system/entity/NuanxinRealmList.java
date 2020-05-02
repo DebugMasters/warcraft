@@ -13,7 +13,7 @@ import com.jeesite.common.mybatis.mapper.query.QueryType;
 /**
  * nuanxin_realm_listEntity
  * @author zhengxiaotai
- * @version 2020-03-26
+ * @version 2020-04-28
  */
 @Table(name="nuanxin_realm_list", alias="a", columns={
 		@Column(name="realm_id", attrName="realmId", label="realm_id", isPK=true),
@@ -25,7 +25,7 @@ import com.jeesite.common.mybatis.mapper.query.QueryType;
 public class NuanxinRealmList extends DataEntity<NuanxinRealmList> {
 	
 	private static final long serialVersionUID = 1L;
-	private Integer realmId;		// realm_id
+	private String realmId;		// realm_id
 	private String realmName;		// realm_name
 	private Integer realmZone;		// realm_zone
 	private Integer realmType;		// realm_type
@@ -38,11 +38,11 @@ public class NuanxinRealmList extends DataEntity<NuanxinRealmList> {
 		super(id);
 	}
 	
-	public Integer getRealmId() {
+	public String getRealmId() {
 		return realmId;
 	}
 
-	public void setRealmId(Integer realmId) {
+	public void setRealmId(String realmId) {
 		this.realmId = realmId;
 	}
 	

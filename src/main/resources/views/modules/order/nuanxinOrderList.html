@@ -16,9 +16,15 @@
 			<#form:form id="searchForm" model="${nuanxinOrder}" action="${ctx}/order/nuanxinOrder/listData" method="post" class="form-inline hide"
 					data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
 				<div class="form-group">
-					<label class="control-label">${text('用户ID')}：</label>
+					<label class="control-label">${text('角色名')}：</label>
 					<div class="control-inline">
-						<#form:input path="userId" maxlength="30" class="form-control width-120"/>
+						<#form:input path="characterName" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('服务器')}：</label>
+					<div class="control-inline">
+						<#form:input path="realmName" maxlength="30" class="form-control width-120"/>
 					</div>
 				</div>
 				<div class="form-group">
@@ -28,21 +34,9 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label">${text('代练类别1')}：</label>
+					<label class="control-label">${text('代练内容')}：</label>
 					<div class="control-inline">
-						<#form:input path="orderCatalog1" maxlength="20" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('代练类别2')}：</label>
-					<div class="control-inline">
-						<#form:input path="orderCatalog2" maxlength="20" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('代练类别3')}：</label>
-					<div class="control-inline">
-						<#form:input path="orderCatalog3" maxlength="20" class="form-control width-120"/>
+						<#form:input path="orderCatalog" maxlength="20" class="form-control width-120"/>
 					</div>
 				</div>
 				<div class="form-group">
@@ -67,18 +61,18 @@
 $('#dataGrid').dataGrid({
 	searchForm: $("#searchForm"),
 	columnModel: [
-		{header:'${text("用户ID")}', name:'userId', index:'a.user_id', width:150, align:"left", frozen:true, formatter: function(val, obj, row, act){
+		{header:'${text("用户ID")}', name:'userName', index:'b.user_name', width:150, align:"left", frozen:true, formatter: function(val, obj, row, act){
 			return '<a href="${ctx}/order/nuanxinOrder/form?orderId='+row.orderId+'" class="btnList" data-title="${text("编辑订单信息")}">'+(val||row.id)+'</a>';
 		}},
-		{header:'${text("订单类型")}', name:'orderType', index:'a.order_type', width:150, align:"center", formatter: function(val, obj, row, act){
+		{header:'${text("角色名")}', name:'characterName', index:'a.ocharacter_name', width:100, align:"left"},
+		{header:'${text("服务器")}', name:'realmName', index:'d.realm_name', width:100, align:"left"},
+		{header:'${text("订单类型")}', name:'orderType', index:'a.order_type', width:100, align:"center", formatter: function(val, obj, row, act){
 			return js.getDictLabel(${@DictUtils.getDictListJson('nx_order_type')}, val, '${text("未知")}', true);
 		}},
-		{header:'${text("服务器类型")}', name:'orderServer', index:'a.order_server', width:150, align:"center", formatter: function(val, obj, row, act){
+		{header:'${text("服务器类型")}', name:'orderServer', index:'a.order_server', width:100, align:"center", formatter: function(val, obj, row, act){
 			return js.getDictLabel(${@DictUtils.getDictListJson('nx_realm_type')}, val, '${text("未知")}', true);
 		}},
-		{header:'${text("代练类别1")}', name:'orderCatalog1', index:'a.order_catalog_1', width:150, align:"left"},
-		{header:'${text("代练类别2")}', name:'orderCatalog2', index:'a.order_catalog_2', width:150, align:"left"},
-		{header:'${text("代练类别3")}', name:'orderCatalog3', index:'a.order_catalog_3', width:150, align:"left"},
+		{header:'${text("代练类别")}', name:'orderCatalog', index:'a.order_catalog', width:300, align:"left"},
 		{header:'${text("订单金额")}', name:'orderMoney', index:'a.order_money', width:150, align:"right", formatter: function(val, obj, row, act){
 			return js.formatNumber(val, 2, false, ''); // 数值类型格式化 (原始数值, 小数位数, 是否千分位, 默认值，金额情况下设置0.00);
 		}},
@@ -91,7 +85,7 @@ $('#dataGrid').dataGrid({
 			var actions = [];
 			<% if(hasPermi('order:nuanxinOrder:edit')){ %>
 				actions.push('<a href="${ctx}/order/nuanxinOrder/form?orderId='+row.orderId+'" class="btnList" title="${text("编辑订单信息")}"><i class="fa fa-pencil"></i></a>&nbsp;');
-				actions.push('<a href="${ctx}/order/nuanxinOrder/delete?orderId='+row.orderId+'" class="btnList" title="${text("删除订单信息")}" data-confirm="${text("确认要删除该订单信息吗？")}"><i class="fa fa-trash-o"></i></a>&nbsp;');
+				// actions.push('<a href="${ctx}/order/nuanxinOrder/delete?orderId='+row.orderId+'" class="btnList" title="${text("删除订单信息")}" data-confirm="${text("确认要删除该订单信息吗？")}"><i class="fa fa-trash-o"></i></a>&nbsp;');
 			<% } %>
 			return actions.join('');
 		}}

@@ -37,12 +37,6 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label">${text('status')}：</label>
-					<div class="control-inline width-120">
-						<#form:select path="status" dictType="sys_search_status" blankOption="true" class="form-control isQuick"/>
-					</div>
-				</div>
-				<div class="form-group">
 					<button type="submit" class="btn btn-primary btn-sm">${text('查询')}</button>
 					<button type="reset" class="btn btn-default btn-sm">${text('重置')}</button>
 				</div>
@@ -70,9 +64,6 @@ $('#dataGrid').dataGrid({
 		{header:'${text("展示标题")}', name:'catalogDisplayName', index:'a.catalog_display_name', width:150, align:"left"},
 		{header:'${text("基础金额")}', name:'money', index:'a.money', width:150, align:"right", formatter: function(val, obj, row, act){
 			return js.formatNumber(val, 2, false, ''); // 数值类型格式化 (原始数值, 小数位数, 是否千分位, 默认值，金额情况下设置0.00);
-		}},
-		{header:'${text("status")}', name:'status', index:'a.status', width:150, align:"center", formatter: function(val, obj, row, act){
-			return js.getDictLabel(${@DictUtils.getDictListJson('sys_search_status')}, val, '${text("未知")}', true);
 		}},
 		{header:'${text("更新时间")}', name:'updateDate', index:'a.update_date', width:150, align:"center"},
 		{header:'${text("操作")}', name:'actions', width:120, sortable:false, title:false, formatter: function(val, obj, row, act){

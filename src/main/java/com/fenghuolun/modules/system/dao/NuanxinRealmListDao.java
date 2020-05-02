@@ -10,7 +10,7 @@ import com.fenghuolun.modules.system.entity.NuanxinRealmList;
 /**
  * nuanxin_realm_listDAO接口
  * @author zhengxiaotai
- * @version 2020-03-26
+ * @version 2020-04-28
  */
 @MyBatisDao
 public interface NuanxinRealmListDao extends CrudDao<NuanxinRealmList> {

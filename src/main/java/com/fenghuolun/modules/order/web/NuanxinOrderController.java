@@ -21,6 +21,8 @@ import com.jeesite.common.entity.Page;
 import com.jeesite.common.web.BaseController;
 import com.fenghuolun.modules.order.entity.NuanxinOrder;
 import com.fenghuolun.modules.order.service.NuanxinOrderService;
+import com.fenghuolun.modules.user.entity.NuanxinCharacter;
+import com.fenghuolun.modules.user.service.NuanxinCharacterService;
 
 /**
  * nuanxin_orderController
@@ -33,6 +35,8 @@ public class NuanxinOrderController extends BaseController {
 
 	@Autowired
 	private NuanxinOrderService nuanxinOrderService;
+	@Autowired
+	private NuanxinCharacterService nuanxinCharacterService;
 	
 	/**
 	 * 获取数据
@@ -70,6 +74,9 @@ public class NuanxinOrderController extends BaseController {
 	@RequiresPermissions("order:nuanxinOrder:view")
 	@RequestMapping(value = "form")
 	public String form(NuanxinOrder nuanxinOrder, Model model) {
+		NuanxinCharacter character = nuanxinCharacterService.getById(nuanxinOrder.getCharacterId());
+		nuanxinOrder.setAccountName(character.getAccountName());
+		nuanxinOrder.setRealmName(character.getRealmName());
 		model.addAttribute("nuanxinOrder", nuanxinOrder);
 		return "modules/order/nuanxinOrderForm";
 	}

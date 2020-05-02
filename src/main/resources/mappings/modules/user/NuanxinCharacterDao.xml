@@ -25,6 +25,22 @@
 		</where>
 	</select>
 	
+	<select id="getById" resultType="NuanxinCharacter">
+		SELECT 
+			a.*, 
+			b.account_name AS "accountName", 
+			c.realm_name AS "realmName" 
+		FROM nuanxin_character a
+		LEFT JOIN nuanxin_account b ON a.character_account = b.account_id 
+		LEFT JOIN nuanxin_realm_list c ON a.character_realm = c.realm_id 
+		<where>
+			<if test="_parameter != null and _parameter != ''">
+				character_id = #{characterId}
+			</if>
+		</where>
+		LIMIT 1
+	</select>
+	
 	<delete id="deleteByAccountId" parameterType="java.lang.String">
 		DELETE FROM nuanxin_character
 		<where>
