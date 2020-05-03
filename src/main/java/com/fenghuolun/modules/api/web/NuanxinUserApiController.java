@@ -56,6 +56,19 @@ public class NuanxinUserApiController extends BaseController {
 	}
 	
 	/*
+	 * 修改个人信息
+	 */
+	@ResponseBody
+	@RequestMapping(value = "saveUserInfo")
+	public Map<String, Object> saveAccountInfo(HttpServletRequest request, HttpServletResponse response) {
+		String userId = request.getParameter("userId");
+		String account = request.getParameter("account");
+		String password = request.getParameter("password");
+		String mobile = request.getParameter("mobile");
+		return nuanxinUserService.updateUserInfo(userId, account, password, mobile);
+	}
+	
+	/*
 	 * 获取子账户列表
 	 */
 	@ResponseBody
@@ -129,15 +142,5 @@ public class NuanxinUserApiController extends BaseController {
 		String characterId = request.getParameter("characterId");
 		String userId = request.getParameter("userId");
 		return nuanxinCharacterService.deleteCharacter(userId, characterId);
-	}
-	
-	@ResponseBody
-	@RequestMapping(value = "saveAccountInfo")
-	public Map<String, Object> saveAccountInfo(HttpServletRequest request, HttpServletResponse response) {
-		String userId = request.getParameter("userId");
-		String account = request.getParameter("account");
-		String password = request.getParameter("password");
-		String mobile = request.getParameter("mobile");
-		return nuanxinUserService.updateAccountInfo(userId, account, password, mobile);
 	}
 }

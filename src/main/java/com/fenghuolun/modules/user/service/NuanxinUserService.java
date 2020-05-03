@@ -145,7 +145,7 @@ public class NuanxinUserService extends CrudService<NuanxinUserDao, NuanxinUser>
 	}
 
 	@Transactional(readOnly=false)
-	public Map<String, Object> updateAccountInfo(String userId, String account, String password, String mobile) {
+	public Map<String, Object> updateUserInfo(String userId, String account, String password, String mobile) {
 		Map<String, Object> result = new HashMap<>();
 		NuanxinUser user = new NuanxinUser();
 		user.setUserId(userId);

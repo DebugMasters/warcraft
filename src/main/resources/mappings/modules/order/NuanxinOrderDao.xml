@@ -6,7 +6,9 @@
 	<select id="findList" resultType="NuanxinOrder">
 		SELECT ${sqlMap.column.toSql()}, 
 			b.user_name AS "userName", 
-			d.realm_name AS "realmName" 
+			c.character_account_name AS "accountName", 
+			d.realm_name AS "realmName", 
+			d.realm_zone AS "realmZone" 
 		FROM ${sqlMap.table.toSql()}
 		LEFT JOIN nuanxin_user b ON a.user_id = b.user_id 
 		LEFT JOIN nuanxin_character c ON a.character_id = c.character_id 
