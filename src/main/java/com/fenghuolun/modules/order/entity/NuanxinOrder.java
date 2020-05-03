@@ -63,11 +63,13 @@ public class NuanxinOrder extends DataEntity<NuanxinOrder> {
 	private Integer saveguard;		// 是否有安全令
 	private String phone;		// 手机
 	private String note;		// 备注
-	
-	private String realmZone;
-	private String realmName;
-	private String accountName;
+
 	private String userName;
+	private String accountName;
+	private String realmName;
+	private String realmZone;
+	private Integer realmType;
+	private String characterClassName;
 	
 	public NuanxinOrder() {
 		this(null);
@@ -245,20 +247,12 @@ public class NuanxinOrder extends DataEntity<NuanxinOrder> {
 		this.note = note;
 	}
 	
-	public String getRealmZone() {
-		return realmZone;
+	public String getUserName() {
+		return userName;
 	}
 	
-	public void setRealmZone(String realmZone) {
-		this.realmZone = realmZone;
-	}
-	
-	public String getRealmName() {
-		return realmName;
-	}
-	
-	public void setRealmName(String realmName) {
-		this.realmName = realmName;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	
 	public String getAccountName() {
@@ -269,12 +263,35 @@ public class NuanxinOrder extends DataEntity<NuanxinOrder> {
 		this.accountName = accountName;
 	}
 	
-	public String getUserName() {
-		return userName;
+	public String getRealmName() {
+		return realmName;
 	}
 	
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setRealmName(String realmName) {
+		this.realmName = realmName;
 	}
 	
+	public String getRealmZone() {
+		return realmZone;
+	}
+	
+	public void setRealmZone(String realmZone) {
+		this.realmZone = realmZone;
+	}
+	
+	public Integer getRealmType() {
+		return realmType;
+	}
+	
+	public void setRealmType(Integer realmType) {
+		this.realmType = realmType;
+	}
+	
+	public String getCharacterClassName() {
+		return characterClassName;
+	}
+	
+	public void setCharacterClassName(String characterClassName) {
+		this.characterClassName = characterClassName;
+	}
 }

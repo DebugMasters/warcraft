@@ -7,13 +7,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jeesite.common.entity.Page;
 import com.jeesite.common.service.CrudService;
+import com.fenghuolun.modules.user.entity.NuanxinAccount;
 import com.fenghuolun.modules.user.entity.NuanxinCharacter;
 import com.fenghuolun.modules.utils.StringUtil;
+import com.fenghuolun.modules.user.dao.NuanxinAccountDao;
 import com.fenghuolun.modules.user.dao.NuanxinCharacterDao;
 
 /**
@@ -24,6 +27,9 @@ import com.fenghuolun.modules.user.dao.NuanxinCharacterDao;
 @Service
 @Transactional(readOnly=true)
 public class NuanxinCharacterService extends CrudService<NuanxinCharacterDao, NuanxinCharacter> {
+	
+	@Autowired
+	private NuanxinAccountDao nuanxinAccountDao;
 	
 	/**
 	 * 获取单条数据
@@ -80,7 +86,7 @@ public class NuanxinCharacterService extends CrudService<NuanxinCharacterDao, Nu
 		NuanxinCharacter character = new NuanxinCharacter();
 		character.setUserId(userId);
 		if (realmType != null && !realmType.isEmpty()) {
-			character.setCharacterRealmType(Integer.parseInt(realmType));
+			character.setRealmType(realmType);
 		}
 		if (accountId != null && !accountId.isEmpty()) {
 			character.setCharacterAccount(accountId);
@@ -98,22 +104,30 @@ public class NuanxinCharacterService extends CrudService<NuanxinCharacterDao, Nu
 	public Map<String, Object> getCharacterById(String characterId) {
 		NuanxinCharacter character = new NuanxinCharacter();
 		character.setCharacterId(characterId);
-		character = dao.get(character);
+		List<NuanxinCharacter> list = dao.findListNew(character);
+		if (list == null || list.size() <= 0) {
+			Map<String, Object> result = new HashMap<String, Object>();
+			result.put("success", false);
+			result.put("msg", "查角色信息未找到");
+			return result;
+		}
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("success", true);
 		result.put("msg", "查询成功");
-		result.put("data", character);
+		result.put("data", list.get(0));
 		return result;
 	}
 
 	@Transactional(readOnly=false)
 	public Map<String, Object> saveCharacter(Map<String, String[]> param) {
+		NuanxinAccount account = new NuanxinAccount();
+		account.setAccountId(param.get("characterAccount")[0]);
+		account = nuanxinAccountDao.get(account);
 		NuanxinCharacter character = new NuanxinCharacter();
 		character.setCharacterName(param.get("characterName")[0]);
 		character.setCharacterAccount(param.get("characterAccount")[0]);
+		character.setCharacterAccountName(account.getAccountName());
 		character.setCharacterRealm(param.get("characterRealm")[0]);
-		character.setCharacterRealmZone(param.get("characterRealmZone")[0]);
-		character.setCharacterRealmType(Integer.parseInt(param.get("characterRealmType")[0]));
 		character.setCharacterClass(Integer.parseInt(param.get("characterClass")[0]));
 		character.setAllianceHorde(Integer.parseInt(param.get("allianceHorde")[0]));
 		character.setCharacterSpecialization(param.get("characterSpecialization")[0]);

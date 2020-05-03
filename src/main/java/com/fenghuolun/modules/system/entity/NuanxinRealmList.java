@@ -19,6 +19,7 @@ import com.jeesite.common.mybatis.mapper.query.QueryType;
 		@Column(name="realm_id", attrName="realmId", label="realm_id", isPK=true),
 		@Column(name="realm_name", attrName="realmName", label="realm_name", queryType=QueryType.LIKE),
 		@Column(name="realm_zone", attrName="realmZone", label="realm_zone"),
+		@Column(name="realm_zone_name", attrName="realmZoneName", label="realm_zone_name"),
 		@Column(name="realm_type", attrName="realmType", label="realm_type"),
 	}, orderBy="a.realm_id DESC"
 )
@@ -28,6 +29,7 @@ public class NuanxinRealmList extends DataEntity<NuanxinRealmList> {
 	private String realmId;		// realm_id
 	private String realmName;		// realm_name
 	private Integer realmZone;		// realm_zone
+	private String realmZoneName;		// realm_zone_name
 	private Integer realmType;		// realm_type
 	
 	public NuanxinRealmList() {
@@ -61,6 +63,14 @@ public class NuanxinRealmList extends DataEntity<NuanxinRealmList> {
 
 	public void setRealmZone(Integer realmZone) {
 		this.realmZone = realmZone;
+	}
+	
+	public String getRealmZoneName() {
+		return realmZoneName;
+	}
+	
+	public void setRealmZoneName(String realmZoneName) {
+		this.realmZoneName = realmZoneName;
 	}
 	
 	public Integer getRealmType() {

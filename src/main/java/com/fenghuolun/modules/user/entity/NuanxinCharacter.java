@@ -19,12 +19,11 @@ import com.jeesite.common.mybatis.mapper.query.QueryType;
 		@Column(name="character_id", attrName="characterId", label="character_id", isPK=true),
 		@Column(name="character_name", attrName="characterName", label="character_name", queryType=QueryType.LIKE),
 		@Column(name="character_account", attrName="characterAccount", label="character_account"),
-		@Column(name="character_realm_type", attrName="characterRealmType", label="character_realm_type"),
+		@Column(name="character_account_name", attrName="characterAccountName", label="character_account_name"),
 		@Column(name="character_class", attrName="characterClass", label="character_class"),
 		@Column(name="alliance_horde", attrName="allianceHorde", label="alliance_horde"),
 		@Column(name="character_specialization", attrName="characterSpecialization", label="character_specialization"),
 		@Column(name="character_realm", attrName="characterRealm", label="character_realm"),
-		@Column(name="character_realm_zone", attrName="characterRealmZone", label="character_realm_zone"),
 		@Column(name="user_id", attrName="userId", label="user_id"),
 	}, orderBy="a.character_id DESC"
 )
@@ -34,16 +33,18 @@ public class NuanxinCharacter extends DataEntity<NuanxinCharacter> {
 	private String characterId;		// character_id
 	private String characterName;		// character_name
 	private String characterAccount;		// character_account
-	private Integer characterRealmType;		// character_realm_type
+	private String characterAccountName;
 	private Integer characterClass;		// character_class
 	private Integer allianceHorde;		// alliance_horde
 	private String characterSpecialization;		// character_specialization
 	private String characterRealm;		// character_realm
-	private String characterRealmZone;
 	private String userId;		// user_id
 	
+	private String characterClassName;
 	private String accountName;
 	private String realmName;
+	private String realmZone;
+	private String realmType;
 	
 	public NuanxinCharacter() {
 		this(null);
@@ -78,12 +79,12 @@ public class NuanxinCharacter extends DataEntity<NuanxinCharacter> {
 		this.characterAccount = characterAccount;
 	}
 	
-	public Integer getCharacterRealmType() {
-		return characterRealmType;
+	public String getCharacterAccountName() {
+		return characterAccountName;
 	}
-
-	public void setCharacterRealmType(Integer characterRealmType) {
-		this.characterRealmType = characterRealmType;
+	
+	public void setCharacterAccountName(String characterAccountName) {
+		this.characterAccountName = characterAccountName;
 	}
 	
 	public Integer getCharacterClass() {
@@ -118,14 +119,6 @@ public class NuanxinCharacter extends DataEntity<NuanxinCharacter> {
 		this.characterRealm = characterRealm;
 	}
 	
-	public String getCharacterRealmZone() {
-		return characterRealmZone;
-	}
-	
-	public void setCharacterRealmZone(String characterRealmZone) {
-		this.characterRealmZone = characterRealmZone;
-	}
-	
 	@Length(min=0, max=30, message="user_id长度不能超过 30 个字符")
 	public String getUserId() {
 		return userId;
@@ -133,6 +126,14 @@ public class NuanxinCharacter extends DataEntity<NuanxinCharacter> {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+	
+	public String getCharacterClassName() {
+		return characterClassName;
+	}
+	
+	public void setCharacterClassName(String characterClassName) {
+		this.characterClassName = characterClassName;
 	}
 	
 	public String getAccountName() {
@@ -149,5 +150,21 @@ public class NuanxinCharacter extends DataEntity<NuanxinCharacter> {
 	
 	public void setRealmName(String realmName) {
 		this.realmName = realmName;
+	}
+	
+	public String getRealmZone() {
+		return realmZone;
+	}
+	
+	public void setRealmZone(String realmZone) {
+		this.realmZone = realmZone;
+	}
+	
+	public String getRealmType() {
+		return realmType;
+	}
+	
+	public void setRealmType(String realmType) {
+		this.realmType = realmType;
 	}
 }
