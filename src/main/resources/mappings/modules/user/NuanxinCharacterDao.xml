@@ -17,7 +17,8 @@
 			a.*, 
 			b.account_name AS "accountName", 
 			c.realm_name AS "realmName", 
-			c.realm_zone_name AS "realmZone", 
+			c.realm_zone AS "realmZone", 
+			c.realm_zone_name AS "realmZoneName", 
 			c.realm_type AS "realmType",
 			d.dict_label AS "characterClassName" 
 		FROM nuanxin_character a
@@ -37,7 +38,8 @@
 			a.*, 
 			b.account_name AS "accountName", 
 			c.realm_name AS "realmName", 
-			c.realm_zone_name AS "realmZone", 
+			c.realm_zone AS "realmZone", 
+			c.realm_zone_name AS "realmZoneName", 
 			c.realm_type AS "realmType", 
 			d.dict_label AS "characterClassName" 
 		FROM nuanxin_character a

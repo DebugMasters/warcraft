@@ -9,13 +9,11 @@
 			c.character_account_name AS "accountName", 
 			d.realm_name AS "realmName", 
 			d.realm_zone_name AS "realmZone", 
-			d.realm_type AS "realmType", 
-			e.dict_label AS "characterClassName" 
+			d.realm_type AS "realmType" 
 		FROM ${sqlMap.table.toSql()}
 		LEFT JOIN nuanxin_user b ON a.user_id = b.user_id 
 		LEFT JOIN nuanxin_character c ON a.character_id = c.character_id 
 		LEFT JOIN nuanxin_realm_list d ON c.character_realm = d.realm_id 
-		LEFT JOIN js_sys_dict_data e ON c.character_class = e.dict_value AND e.dict_type = 'nx_character_class' 
 		<where>
 			${sqlMap.where.toSql()}
 			<if test="realmName != null and realmName != ''">
@@ -31,13 +29,11 @@
 			c.character_account_name AS "accountName", 
 			d.realm_name AS "realmName", 
 			d.realm_zone_name AS "realmZone", 
-			d.realm_type AS "realmType", 
-			e.dict_label AS "characterClassName" 
+			d.realm_type AS "realmType" 
 		FROM nuanxin_order a 
 		LEFT JOIN nuanxin_user b ON a.user_id = b.user_id 
 		LEFT JOIN nuanxin_character c ON a.character_id = c.character_id 
 		LEFT JOIN nuanxin_realm_list d ON c.character_realm = d.realm_id 
-		LEFT JOIN js_sys_dict_data e ON c.character_class = e.dict_value AND e.dict_type = 'nx_character_class' 
 		<where>
 			<if test="userId != null and userId != ''">
 				AND a.user_id = #{userId} 

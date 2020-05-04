@@ -117,7 +117,8 @@ public class NuanxinOrderService extends CrudService<NuanxinOrderDao, NuanxinOrd
 		order.setOrderMoney(Double.parseDouble(param.get("orderMoney")[0]));
 		order.setOrderStatus(0);
 		order.setCharacterId(param.get("characterId")[0]);
-		order.setCharacterName(characterList.get(0).getCharacterName());
+		order.setCharacterInfo(param.get("characterInfo")[0]);
+		order.setCharacterRealm(param.get("characterRealm")[0]);
 		order.setCharacterSpec(param.get("characterSpec")[0]);
 		order.setCreateTime(new Date());
 		order.setAccountId(param.get("accountId")[0]);

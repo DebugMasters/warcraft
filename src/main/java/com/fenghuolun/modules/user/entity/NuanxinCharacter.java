@@ -43,7 +43,8 @@ public class NuanxinCharacter extends DataEntity<NuanxinCharacter> {
 	private String characterClassName;
 	private String accountName;
 	private String realmName;
-	private String realmZone;
+	private Integer realmZone;
+	private String realmZoneName;
 	private String realmType;
 	
 	public NuanxinCharacter() {
@@ -152,12 +153,20 @@ public class NuanxinCharacter extends DataEntity<NuanxinCharacter> {
 		this.realmName = realmName;
 	}
 	
-	public String getRealmZone() {
+	public Integer getRealmZone() {
 		return realmZone;
 	}
 	
-	public void setRealmZone(String realmZone) {
+	public void setRealmZone(Integer realmZone) {
 		this.realmZone = realmZone;
+	}
+	
+	public String getRealmZoneName() {
+		return realmZoneName;
+	}
+	
+	public void setRealmZoneName(String realmZoneName) {
+		this.realmZoneName = realmZoneName;
 	}
 	
 	public String getRealmType() {

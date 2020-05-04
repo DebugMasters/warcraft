@@ -31,7 +31,8 @@ import com.jeesite.common.mybatis.mapper.query.QueryType;
 		@Column(name="order_money", attrName="orderMoney", label="订单金额", isQuery=false),
 		@Column(name="order_status", attrName="orderStatus", label="订单状态"),
 		@Column(name="character_id", attrName="characterId", label="角色ID", isQuery=false),
-		@Column(name="character_name", attrName="characterName", label="角色名称", queryType=QueryType.LIKE),
+		@Column(name="character_info", attrName="characterInfo", label="角色信息", queryType=QueryType.LIKE),
+		@Column(name="character_realm", attrName="characterRealm", label="角色服务器信息"),
 		@Column(name="character_spec", attrName="characterSpec", label="角色专精", isQuery=false),
 		@Column(name="create_time", attrName="createTime", label="下单时间", isQuery=false),
 		@Column(name="account_id", attrName="accountId", label="账户", isQuery=false),
@@ -55,7 +56,8 @@ public class NuanxinOrder extends DataEntity<NuanxinOrder> {
 	private Double orderMoney;		// 订单金额
 	private Integer orderStatus;		// 订单状态
 	private String characterId;		// 角色ID
-	private String characterName;	// 角色名称
+	private String characterInfo;	// 角色信息
+	private String characterRealm;	// 角色服务器信息
 	private String characterSpec;	// 角色专精
 	private Date createTime;		// 下单时间
 	private String accountId;		// 账户
@@ -178,12 +180,20 @@ public class NuanxinOrder extends DataEntity<NuanxinOrder> {
 		this.characterId = characterId;
 	}
 	
-	public String getCharacterName() {
-		return characterName;
+	public String getCharacterInfo() {
+		return characterInfo;
 	}
 	
-	public void setCharacterName(String characterName) {
-		this.characterName = characterName;
+	public void setCharacterInfo(String characterInfo) {
+		this.characterInfo = characterInfo;
+	}
+	
+	public String getCharacterRealm() {
+		return characterRealm;
+	}
+	
+	public void setCharacterRealm(String characterRealm) {
+		this.characterRealm = characterRealm;
 	}
 	
 	public String getCharacterSpec() {

@@ -18,7 +18,7 @@
 				<div class="form-group">
 					<label class="control-label">${text('角色名')}：</label>
 					<div class="control-inline">
-						<#form:input path="characterName" maxlength="30" class="form-control width-120"/>
+						<#form:input path="characterInfo" maxlength="30" class="form-control width-120"/>
 					</div>
 				</div>
 				<div class="form-group">
@@ -61,11 +61,11 @@
 $('#dataGrid').dataGrid({
 	searchForm: $("#searchForm"),
 	columnModel: [
-		{header:'${text("用户ID")}', name:'userName', index:'b.user_name', width:150, align:"left", frozen:true, formatter: function(val, obj, row, act){
+		{header:'${text("用户名")}', name:'userName', index:'b.user_name', width:120, align:"left", frozen:true, formatter: function(val, obj, row, act){
 			return '<a href="${ctx}/order/nuanxinOrder/form?orderId='+row.orderId+'" class="btnList" data-title="${text("编辑订单信息")}">'+(val||row.id)+'</a>';
 		}},
-		{header:'${text("角色名")}', name:'characterName', index:'a.ocharacter_name', width:100, align:"left"},
-		{header:'${text("服务器")}', name:'realmName', index:'d.realm_name', width:100, align:"left"},
+		{header:'${text("角色信息")}', name:'characterInfo', index:'a.character_info', width:200, align:"left"},
+		{header:'${text("服务器")}', name:'realmName', index:'d.realm_name', width:200, align:"left"},
 		{header:'${text("订单类型")}', name:'orderType', index:'a.order_type', width:100, align:"center", formatter: function(val, obj, row, act){
 			return js.getDictLabel(${@DictUtils.getDictListJson('nx_order_type')}, val, '${text("未知")}', true);
 		}},
@@ -73,15 +73,15 @@ $('#dataGrid').dataGrid({
 			return js.getDictLabel(${@DictUtils.getDictListJson('nx_realm_type')}, val, '${text("未知")}', true);
 		}},
 		{header:'${text("代练类别")}', name:'orderCatalog', index:'a.order_catalog', width:300, align:"left"},
-		{header:'${text("订单金额")}', name:'orderMoney', index:'a.order_money', width:150, align:"right", formatter: function(val, obj, row, act){
+		{header:'${text("订单金额")}', name:'orderMoney', index:'a.order_money', width:100, align:"right", formatter: function(val, obj, row, act){
 			return js.formatNumber(val, 2, false, ''); // 数值类型格式化 (原始数值, 小数位数, 是否千分位, 默认值，金额情况下设置0.00);
 		}},
-		{header:'${text("订单状态")}', name:'orderStatus', index:'a.order_status', width:150, align:"center", formatter: function(val, obj, row, act){
+		{header:'${text("订单状态")}', name:'orderStatus', index:'a.order_status', width:100, align:"center", formatter: function(val, obj, row, act){
 			return js.getDictLabel(${@DictUtils.getDictListJson('nx_order_status')}, val, '${text("未知")}', true);
 		}},
 		{header:'${text("下单时间")}', name:'createTime', index:'a.create_time', width:150, align:"center"},
-		{header:'${text("手机")}', name:'phone', index:'a.phone', width:150, align:"left"},
-		{header:'${text("操作")}', name:'actions', width:120, sortable:false, title:false, formatter: function(val, obj, row, act){
+		{header:'${text("手机")}', name:'phone', index:'a.phone', width:100, align:"left"},
+		{header:'${text("操作")}', name:'actions', width:100, sortable:false, title:false, formatter: function(val, obj, row, act){
 			var actions = [];
 			<% if(hasPermi('order:nuanxinOrder:edit')){ %>
 				actions.push('<a href="${ctx}/order/nuanxinOrder/form?orderId='+row.orderId+'" class="btnList" title="${text("编辑订单信息")}"><i class="fa fa-pencil"></i></a>&nbsp;');
