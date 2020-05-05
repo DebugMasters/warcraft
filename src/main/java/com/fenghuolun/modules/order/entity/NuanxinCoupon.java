@@ -6,8 +6,6 @@ package com.fenghuolun.modules.order.entity;
 import javax.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Length;
 import java.util.Date;
-import com.jeesite.common.mybatis.annotation.JoinTable;
-import com.jeesite.common.mybatis.annotation.JoinTable.Type;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import com.jeesite.common.entity.DataEntity;

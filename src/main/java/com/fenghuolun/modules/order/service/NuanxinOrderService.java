@@ -205,12 +205,31 @@ public class NuanxinOrderService extends CrudService<NuanxinOrderDao, NuanxinOrd
 		List<NuanxinOrder> list = dao.findList(order);
 		if (list == null || list.size() == 0) {
 			result.put("success", false);
-			result.put("msg", "未找到订单");
+			result.put("msg", "订单未找到");
 			return result;
 		}
 		result.put("success", true);
 		result.put("msg", "查询成功");
 		result.put("data", list.get(0));
+		return result;
+	}
+
+	@Transactional(readOnly=false)
+	public Map<String, Object> cancelOrder(String userId, String orderId) {
+		Map<String, Object> result = new HashMap<>();
+		NuanxinOrder order = new NuanxinOrder();
+		order.setUserId(userId);
+		order.setOrderId(orderId);
+		order = dao.get(order);
+		if (order == null) {
+			result.put("success", false);
+			result.put("msg", "订单未找到");
+			return result;
+		}
+		order.setOrderStatus(-1);
+		dao.update(order);
+		result.put("success", true);
+		result.put("msg", "取消成功");
 		return result;
 	}
 }

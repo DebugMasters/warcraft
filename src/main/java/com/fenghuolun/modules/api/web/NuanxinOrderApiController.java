@@ -107,4 +107,21 @@ public class NuanxinOrderApiController {
 		}
 		return nuanxinOrderService.orderDetail(userId, orderId);
 	}
+	
+	/*
+	 * 取消订单
+	 */
+	@ResponseBody
+	@RequestMapping(value = "cancelOrder")
+	public Map<String, Object> cancelOrder(HttpServletRequest request, HttpServletResponse response) {
+		String userId = request.getParameter("userId");
+		String orderId = request.getParameter("orderId");
+		if (userId == null || userId.isEmpty()) {
+			Map<String, Object> result = new HashMap<>();
+			result.put("success", false);
+			result.put("msg", "用户信息错误");
+			return result;
+		}
+		return nuanxinOrderService.cancelOrder(userId, orderId);
+	}
 }
