@@ -25,7 +25,7 @@ import com.fenghuolun.modules.order.service.NuanxinCouponService;
 /**
  * nuanxin_couponController
  * @author zhengxiaotai
- * @version 2020-05-02
+ * @version 2020-05-05
  */
 @Controller
 @RequestMapping(value = "${adminPath}/order/nuanxinCoupon")

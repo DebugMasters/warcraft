@@ -3,6 +3,8 @@
  */
 package com.fenghuolun.modules.order.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,7 +16,7 @@ import com.fenghuolun.modules.order.dao.NuanxinCouponDao;
 /**
  * nuanxin_couponService
  * @author zhengxiaotai
- * @version 2020-05-02
+ * @version 2020-05-05
  */
 @Service
 @Transactional(readOnly=true)

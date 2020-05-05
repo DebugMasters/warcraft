@@ -18,7 +18,8 @@
 			<if test="_parameter != null and _parameter != ''">
 				AND user_id = #{userId} 
 			</if>
-			AND expire_time >= NOW()
+			AND expire_time >= NOW() 
+			AND coupon_status = 1
 		</where>
 	</select>
 </mapper>

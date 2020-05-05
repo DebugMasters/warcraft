@@ -56,13 +56,14 @@ public class NuanxinOrderApiController {
 	@RequestMapping(value = "orderList")
 	public Map<String, Object> orderList(HttpServletRequest request, HttpServletResponse response) {
 		String userId = request.getParameter("userId");
+		String orderStatus = request.getParameter("orderStatus");
 		if (userId == null || userId.isEmpty()) {
 			Map<String, Object> result = new HashMap<>();
 			result.put("success", false);
 			result.put("msg", "用户信息错误");
 			return result;
 		}
-		return nuanxinOrderService.orderList(userId);
+		return nuanxinOrderService.orderList(userId, orderStatus);
 	}
 	
 	/*

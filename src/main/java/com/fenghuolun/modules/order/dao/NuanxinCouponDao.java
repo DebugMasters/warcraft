@@ -13,7 +13,7 @@ import com.fenghuolun.modules.order.entity.NuanxinCoupon;
 /**
  * nuanxin_couponDAO接口
  * @author zhengxiaotai
- * @version 2020-05-02
+ * @version 2020-05-05
  */
 @MyBatisDao
 public interface NuanxinCouponDao extends CrudDao<NuanxinCoupon> {

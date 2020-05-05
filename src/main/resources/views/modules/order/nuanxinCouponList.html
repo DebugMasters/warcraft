@@ -16,15 +16,27 @@
 			<#form:form id="searchForm" model="${nuanxinCoupon}" action="${ctx}/order/nuanxinCoupon/listData" method="post" class="form-inline hide"
 					data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
 				<div class="form-group">
-					<label class="control-label">${text('user_id')}：</label>
+					<label class="control-label">${text('coupon_name')}：</label>
 					<div class="control-inline">
-						<#form:input path="userId" maxlength="40" class="form-control width-120"/>
+						<#form:input path="couponName" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('coupon_discount')}：</label>
+					<div class="control-inline">
+						<#form:input path="couponDiscount" class="form-control width-120"/>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label">${text('coupon_status')}：</label>
 					<div class="control-inline width-120">
 						<#form:select path="couponStatus" dictType="nx_coupon_status" blankOption="true" class="form-control"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('user_id')}：</label>
+					<div class="control-inline">
+						<#form:input path="userId" maxlength="40" class="form-control width-120"/>
 					</div>
 				</div>
 				<div class="form-group">
@@ -49,15 +61,19 @@
 $('#dataGrid').dataGrid({
 	searchForm: $("#searchForm"),
 	columnModel: [
-		{header:'${text("user_id")}', name:'userId', index:'a.user_id', width:150, align:"left", frozen:true, formatter: function(val, obj, row, act){
+		{header:'${text("coupon_name")}', name:'couponName', index:'a.coupon_name', width:150, align:"left", frozen:true, formatter: function(val, obj, row, act){
 			return '<a href="${ctx}/order/nuanxinCoupon/form?couponId='+row.couponId+'" class="btnList" data-title="${text("编辑nuanxin_coupon")}">'+(val||row.id)+'</a>';
 		}},
 		{header:'${text("coupon_money")}', name:'couponMoney', index:'a.coupon_money', width:150, align:"right", formatter: function(val, obj, row, act){
 			return js.formatNumber(val, 2, false, ''); // 数值类型格式化 (原始数值, 小数位数, 是否千分位, 默认值，金额情况下设置0.00);
 		}},
+		{header:'${text("coupon_discount")}', name:'couponDiscount', index:'a.coupon_discount', width:150, align:"right", formatter: function(val, obj, row, act){
+			return js.formatNumber(val, 2, false, ''); // 数值类型格式化 (原始数值, 小数位数, 是否千分位, 默认值，金额情况下设置0.00);
+		}},
 		{header:'${text("coupon_status")}', name:'couponStatus', index:'a.coupon_status', width:150, align:"center", formatter: function(val, obj, row, act){
 			return js.getDictLabel(${@DictUtils.getDictListJson('nx_coupon_status')}, val, '${text("未知")}', true);
 		}},
+		{header:'${text("user_id")}', name:'userId', index:'a.user_id', width:150, align:"left"},
 		{header:'${text("expire_time")}', name:'expireTime', index:'a.expire_time', width:150, align:"center"},
 		{header:'${text("order_id")}', name:'orderId', index:'a.order_id', width:150, align:"left"},
 		{header:'${text("操作")}', name:'actions', width:120, sortable:false, title:false, formatter: function(val, obj, row, act){

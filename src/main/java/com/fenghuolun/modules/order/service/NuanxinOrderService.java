@@ -98,15 +98,14 @@ public class NuanxinOrderService extends CrudService<NuanxinOrderDao, NuanxinOrd
 		String characterId = param.get("characterId")[0];
 		NuanxinCharacter character = new NuanxinCharacter();
 		character.setCharacterId(characterId);
-		List<NuanxinCharacter> characterList = nuanxinCharacterDao.findListNew(character);
-		if (characterList == null || characterList.size() <= 0) {
+		character = nuanxinCharacterDao.get(character);
+		if (character == null) {
 			result.put("success", false);
 			result.put("msg", "角色信息错误");
 			return result;
 		}
 		
 		NuanxinOrder order = new NuanxinOrder();
-		order.setOrderId("ODR" + System.currentTimeMillis() + StringUtil.randomStringNumberUpperCase(4));
 		order.setUserId(param.get("userId")[0]);
 		order.setOrderType(Integer.parseInt(param.get("orderType")[0]));
 		order.setOrderServer(Integer.parseInt(param.get("orderServer")[0]));
@@ -126,7 +125,31 @@ public class NuanxinOrderService extends CrudService<NuanxinOrderDao, NuanxinOrd
 		order.setSaveguard(Integer.parseInt(param.get("saveguard")[0]));
 		order.setPhone(param.get("phone")[0]);
 		order.setNote(param.get("note")[0]);
-		dao.insert(order);
+		
+		String orderId = param.get("orderId")[0];
+		if (orderId != null && !orderId.isEmpty()) {
+			// 有订单号的需要更新
+			order.setOrderId(orderId);
+			dao.update(order);
+		}
+		else {
+			// 没有订单号的需要新增
+			order.setOrderId("ODR" + System.currentTimeMillis() + StringUtil.randomStringNumberUpperCase(4));
+			dao.insert(order);
+			
+			// 优惠券状态
+			String couponId = param.get("couponId")[0];
+			if (couponId != null && !couponId.isEmpty()) {
+				NuanxinCoupon coupon = new NuanxinCoupon();
+				coupon.setCouponId(couponId);
+				coupon = nuanxinCouponDao.get(coupon);
+				if (coupon != null) {
+					coupon.setOrderId(order.getOrderId());
+					coupon.setCouponStatus(2);
+					nuanxinCouponDao.update(coupon);
+				}
+			}
+		}
 		
 		NuanxinUser user = new NuanxinUser();
 		user.setUserId(param.get("userId")[0]);
@@ -142,10 +165,13 @@ public class NuanxinOrderService extends CrudService<NuanxinOrderDao, NuanxinOrd
 		return result;
 	}
 	
-	public Map<String, Object> orderList(String userId) {
+	public Map<String, Object> orderList(String userId, String orderStatus) {
 		Map<String, Object> result = new HashMap<>();
 		NuanxinOrder order = new NuanxinOrder();
 		order.setUserId(userId);
+		if (orderStatus != null && !orderStatus.isEmpty()) {
+			order.setOrderStatus(Integer.parseInt(orderStatus));
+		}
 		List<NuanxinOrder> list = dao.orderList(order);
 		result.put("success", true);
 		result.put("msg", "查询成功");

@@ -6,22 +6,27 @@ package com.fenghuolun.modules.order.entity;
 import javax.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Length;
 import java.util.Date;
+import com.jeesite.common.mybatis.annotation.JoinTable;
+import com.jeesite.common.mybatis.annotation.JoinTable.Type;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import com.jeesite.common.entity.DataEntity;
 import com.jeesite.common.mybatis.annotation.Column;
 import com.jeesite.common.mybatis.annotation.Table;
+import com.jeesite.common.mybatis.mapper.query.QueryType;
 
 /**
  * nuanxin_couponEntity
  * @author zhengxiaotai
- * @version 2020-05-02
+ * @version 2020-05-05
  */
 @Table(name="nuanxin_coupon", alias="a", columns={
 		@Column(name="coupon_id", attrName="couponId", label="coupon_id", isPK=true),
-		@Column(name="user_id", attrName="userId", label="user_id"),
+		@Column(name="coupon_name", attrName="couponName", label="coupon_name", queryType=QueryType.LIKE),
 		@Column(name="coupon_money", attrName="couponMoney", label="coupon_money", isQuery=false),
+		@Column(name="coupon_discount", attrName="couponDiscount", label="coupon_discount"),
 		@Column(name="coupon_status", attrName="couponStatus", label="coupon_status"),
+		@Column(name="user_id", attrName="userId", label="user_id"),
 		@Column(name="expire_time", attrName="expireTime", label="expire_time", isQuery=false),
 		@Column(name="order_id", attrName="orderId", label="order_id"),
 	}, orderBy="a.coupon_id DESC"
@@ -30,9 +35,11 @@ public class NuanxinCoupon extends DataEntity<NuanxinCoupon> {
 	
 	private static final long serialVersionUID = 1L;
 	private String couponId;		// coupon_id
-	private String userId;		// user_id
+	private String couponName;		// coupon_name
 	private Double couponMoney;		// coupon_money
-	private Long couponStatus;		// coupon_status
+	private Double couponDiscount;		// coupon_discount
+	private Integer couponStatus;		// coupon_status
+	private String userId;		// user_id
 	private Date expireTime;		// expire_time
 	private String orderId;		// order_id
 	
@@ -52,14 +59,14 @@ public class NuanxinCoupon extends DataEntity<NuanxinCoupon> {
 		this.couponId = couponId;
 	}
 	
-	@NotBlank(message="user_id不能为空")
-	@Length(min=0, max=40, message="user_id长度不能超过 40 个字符")
-	public String getUserId() {
-		return userId;
+	@NotBlank(message="coupon_name不能为空")
+	@Length(min=0, max=30, message="coupon_name长度不能超过 30 个字符")
+	public String getCouponName() {
+		return couponName;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setCouponName(String couponName) {
+		this.couponName = couponName;
 	}
 	
 	public Double getCouponMoney() {
@@ -70,12 +77,30 @@ public class NuanxinCoupon extends DataEntity<NuanxinCoupon> {
 		this.couponMoney = couponMoney;
 	}
 	
-	public Long getCouponStatus() {
+	public Double getCouponDiscount() {
+		return couponDiscount;
+	}
+
+	public void setCouponDiscount(Double couponDiscount) {
+		this.couponDiscount = couponDiscount;
+	}
+	
+	public Integer getCouponStatus() {
 		return couponStatus;
 	}
 
-	public void setCouponStatus(Long couponStatus) {
+	public void setCouponStatus(Integer couponStatus) {
 		this.couponStatus = couponStatus;
+	}
+	
+	@NotBlank(message="user_id不能为空")
+	@Length(min=0, max=40, message="user_id长度不能超过 40 个字符")
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
