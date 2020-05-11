@@ -3,12 +3,18 @@
  */
 package com.fenghuolun.modules.order.service;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jeesite.common.entity.Page;
 import com.jeesite.common.service.CrudService;
 import com.fenghuolun.modules.order.entity.NuanxinCoupon;
+import com.fenghuolun.modules.user.dao.NuanxinUserDao;
+import com.fenghuolun.modules.user.entity.NuanxinUser;
+import com.fenghuolun.modules.utils.StringUtil;
 import com.fenghuolun.modules.order.dao.NuanxinCouponDao;
 
 /**
@@ -19,6 +25,9 @@ import com.fenghuolun.modules.order.dao.NuanxinCouponDao;
 @Service
 @Transactional(readOnly=true)
 public class NuanxinCouponService extends CrudService<NuanxinCouponDao, NuanxinCoupon> {
+	
+	@Autowired
+	private NuanxinUserDao nuanxinUserDao;
 	
 	/**
 	 * 获取单条数据
@@ -48,7 +57,14 @@ public class NuanxinCouponService extends CrudService<NuanxinCouponDao, NuanxinC
 	@Override
 	@Transactional(readOnly=false)
 	public void save(NuanxinCoupon nuanxinCoupon) {
-		super.save(nuanxinCoupon);
+		if (nuanxinCoupon.getCouponId() == null || nuanxinCoupon.getCouponId().isEmpty()) {
+			String couponId = "CPN" + System.currentTimeMillis() + StringUtil.randomStringNumberUpperCase(4);
+			nuanxinCoupon.setCouponId(couponId);
+			super.insert(nuanxinCoupon);
+		}
+		else {
+			super.update(nuanxinCoupon);
+		}
 	}
 	
 	/**
@@ -70,5 +86,16 @@ public class NuanxinCouponService extends CrudService<NuanxinCouponDao, NuanxinC
 	public void delete(NuanxinCoupon nuanxinCoupon) {
 		super.delete(nuanxinCoupon);
 	}
-	
+
+	@Transactional(readOnly=false)
+	public void addCouponAll(NuanxinCoupon coupon) {
+		NuanxinUser user = new NuanxinUser();
+		user.setUserStatus(1);
+		List<NuanxinUser> list = nuanxinUserDao.findList(user);
+		for (NuanxinUser u : list) {
+			coupon.setCouponId("CPN" + System.currentTimeMillis() + StringUtil.randomStringNumberUpperCase(4));
+			coupon.setUserId(u.getUserId());
+			dao.insert(coupon);
+		}
+	}
 }

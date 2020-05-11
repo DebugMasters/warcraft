@@ -21,6 +21,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.fenghuolun.modules.order.entity.NuanxinOrder;
+import com.fenghuolun.modules.order.entity.NuanxinWechatOrder;
+import com.fenghuolun.modules.order.service.NuanxinOrderService;
+import com.fenghuolun.modules.order.service.NuanxinWechatOrderService;
 import com.fenghuolun.modules.system.service.NuanxinConfigService;
 import com.fenghuolun.modules.utils.entity.AccessTokenResponse;
 import com.fenghuolun.modules.utils.entity.JSCode2SessionResponse;
@@ -36,14 +40,14 @@ public class WechatUtil {
 
 	@Autowired
 	private NuanxinConfigService nuanxinConfigService;
-//	@Autowired
-//	private NuanxinPaymentInfoService nuanxinPaymentInfoService;
-//	@Autowired
-//	private NuanxinProductService nuanxinProductService;
+	@Autowired
+	private NuanxinOrderService nuanxinOrderService;
+	@Autowired
+	private NuanxinWechatOrderService nuanxinWechatOrderService;
 
 	private static NuanxinConfigService configService;
-//	private static NuanxinPaymentInfoService paymentInfoService;
-//	private static NuanxinProductService productService;
+	private static NuanxinOrderService orderService;
+	private static NuanxinWechatOrderService wechatOrderService;
 
 	public static String JSCODE_2_SESSION_URL = "https://api.weixin.qq.com/sns/jscode2session?appid=APPID&secret=SECRET&js_code=JSCODE&grant_type=authorization_code";
 	public static String UNIFIED_ORDER_URL = "https://api.mch.weixin.qq.com/pay/unifiedorder";
@@ -56,8 +60,8 @@ public class WechatUtil {
 	@PostConstruct
 	public void init() {
 		configService = nuanxinConfigService;
-//		paymentInfoService = nuanxinPaymentInfoService;
-//		productService = nuanxinProductService;
+		orderService = nuanxinOrderService;
+		wechatOrderService = nuanxinWechatOrderService;
 	}
 	
 	public static JSCode2SessionResponse jsCode2Session(String appId, String appSecret, String code) {
@@ -193,42 +197,40 @@ public class WechatUtil {
 		
 		XStream xStream = new XStream();
 		xStream.alias("xml", OrderInformResponse.class);
-//		OrderInformResponse response = (OrderInformResponse) xStream.fromXML(result);
-//		NuanxinPaymentInfo paymentInfo = new NuanxinPaymentInfo();
-//		paymentInfo.setReturnCode(response.getReturn_code());
-//		paymentInfo.setRemarks(result);
-//		if ("SUCCESS".equals(response.getReturn_code())) {
-//			// 返回成功，支付记录表新增记录
-//			
-//			String[] attach = response.getAttach().split("_");
-//			paymentInfo.setUserId(attach[0]);
-//			paymentInfo.setProductId(attach[1]);
-//			paymentInfo.setFeeType(Integer.parseInt(attach[2]));
-//			paymentInfo.setOpenId(response.getOpenid());
-//			if (!"SUCCESS".equals(response.getResult_code())) {
+		OrderInformResponse response = (OrderInformResponse) xStream.fromXML(result);
+		NuanxinWechatOrder wechatOrder = new NuanxinWechatOrder();
+		wechatOrder.setReturnCode(response.getReturn_code());
+		wechatOrder.setReturnMsg(response.getReturn_msg());
+		wechatOrder.setData(result);
+		if ("SUCCESS".equals(response.getReturn_code())) {
+			// 返回成功，支付记录表新增记录
+			String[] attach = response.getAttach().split("_");
+			wechatOrder.setUserId(attach[0]);
+			wechatOrder.setOrderId(attach[1]);
+			if (!"SUCCESS".equals(response.getResult_code())) {
 //				// 支付不成功，补全错误信息
-//			}
-//			else {
-//				// 支付成功，补全支付信息
-//				paymentInfo.setOutTradeNo(response.getOut_trade_no());
-//				paymentInfo.setTotalFee(response.getTotal_fee());
-//				NuanxinProduct product = productService.get(attach[1]);
-//				if (paymentInfo.getFeeType() == 1) {
-//					// 发布费用，更新支付状态
-//					product.setPayStatus(1);
-//				}
-//				else if (paymentInfo.getFeeType() == 2) {
-//					// 置顶费用，更新置顶状态和时间
-//					Calendar calendar = Calendar.getInstance();
-//					product.setStickyStartTime(calendar.getTime());
-//					calendar.add(Calendar.DATE, Integer.parseInt(attach[3]));
-//					product.setStickyEndTime(calendar.getTime());
-//					product.setSticky(1);
-//				}
-//				productService.update(product);
-//			}
-//		}
-//		paymentInfoService.insert(paymentInfo);
+				wechatOrder.setErrCode(response.getErr_code());
+				wechatOrder.setErrCodeDes(response.getErr_code_des());
+			}
+			else {
+				// 支付成功，补全支付信息
+				wechatOrder.setOutTradeNo(response.getOut_trade_no());
+				wechatOrder.setTotalFee(response.getTotal_fee());
+				
+				NuanxinOrder order = new NuanxinOrder();
+				order.setOrderId(wechatOrder.getOrderId());
+				order = orderService.get(order);
+				if (order != null) {
+					order.setOrderStatus(1);
+					orderService.update(order);
+				}
+			}
+		}
+		else {
+			wechatOrder.setErrCode(response.getErr_code());
+			wechatOrder.setErrCodeDes(response.getErr_code_des());
+		}
+		wechatOrderService.insert(wechatOrder);
 	}
 	
 	public static AccessTokenResponse getAccessToken(String appId, String appSecret) {

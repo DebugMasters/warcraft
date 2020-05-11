@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.jeesite.common.config.Global;
 import com.jeesite.common.entity.Page;
 import com.jeesite.common.web.BaseController;
+import com.fenghuolun.modules.order.entity.NuanxinCoupon;
 import com.fenghuolun.modules.user.entity.NuanxinUser;
 import com.fenghuolun.modules.user.service.NuanxinUserService;
 
@@ -94,6 +95,15 @@ public class NuanxinUserController extends BaseController {
 	public String delete(NuanxinUser nuanxinUser) {
 		nuanxinUserService.delete(nuanxinUser);
 		return renderResult(Global.TRUE, text("删除用户信息成功！"));
+	}
+	
+	@RequiresPermissions("user:nuanxinUser:view")
+	@RequestMapping(value = "addCoupon")
+	public String addCoupon(NuanxinUser nuanxinUser, Model model) {
+		NuanxinCoupon nuanxinCoupon = new NuanxinCoupon();
+		nuanxinCoupon.setUserId(nuanxinUser.getUserId());
+		model.addAttribute("nuanxinCoupon", nuanxinCoupon);
+		return "modules/user/addCoupon";
 	}
 	
 }

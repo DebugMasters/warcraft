@@ -96,4 +96,18 @@ public class NuanxinCouponController extends BaseController {
 		return renderResult(Global.TRUE, text("删除nuanxin_coupon成功！"));
 	}
 	
+	/**
+	 * 发放优惠券
+	 */
+	@RequestMapping(value = "addCoupon")
+	@ResponseBody
+	public String addCoupon(NuanxinCoupon nuanxinCoupon) {
+		if (nuanxinCoupon.getUserId() == null || nuanxinCoupon.getUserId().isEmpty()) {
+			nuanxinCouponService.addCouponAll(nuanxinCoupon);
+		}
+		else {
+			nuanxinCouponService.save(nuanxinCoupon);
+		}
+		return renderResult(Global.TRUE, text("已发放！"));
+	}
 }
