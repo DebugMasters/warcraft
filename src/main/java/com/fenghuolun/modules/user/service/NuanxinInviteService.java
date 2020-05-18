@@ -109,8 +109,7 @@ public class NuanxinInviteService extends CrudService<NuanxinInviteDao, NuanxinI
 		NuanxinInvite invite = new NuanxinInvite();
 		invite.setInviteUserId(inviteUserId);
 		invite.setInvitedUserId(invitedUserId);
-		invite = dao.get(invite);
-		if (invite == null) {
+		if (dao.findCount(invite) > 0) {
 			result.put("success", false);
 			result.put("msg", "您已经接受过邀请了哦~");
 			return result;
