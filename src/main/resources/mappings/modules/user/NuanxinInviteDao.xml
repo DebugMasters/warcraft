@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.fenghuolun.modules.order.dao.NuanxinWechatOrderDao">
+<mapper namespace="com.fenghuolun.modules.user.dao.NuanxinInviteDao">
 	
 	<!-- 查询数据
-	<select id="findList" resultType="NuanxinWechatOrder">
+	<select id="findList" resultType="NuanxinInvite">
 		SELECT ${sqlMap.column.toSql()}
 		FROM ${sqlMap.table.toSql()}
 		<where>
@@ -12,7 +12,4 @@
 		ORDER BY ${sqlMap.order.toSql()}
 	</select> -->
 	
-	<select id="totalIncome" resultType="java.lang.Long">
-		SELECT SUM(total_fee) / 100 FROM nuanxin_wechat_order WHERE result_code = "SUCCESS"
-	</select>
 </mapper>

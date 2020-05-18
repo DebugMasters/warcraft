@@ -157,7 +157,7 @@ public class NuanxinOrderService extends CrudService<NuanxinOrderDao, NuanxinOrd
 		String openId = user.getWxOpenid();
 		String remoteAddr = param.get("remoteAddr")[0];
 		Map<String, Object> payInfo = WechatUtil.unifiedOrder(openId, Integer.parseInt(param.get("orderMoney")[0]), 
-				remoteAddr, user.getUserId() + "_" + order.getOrderId() + "_1");
+				remoteAddr, user.getUserId() + "_" + order.getOrderId());
 		
 		result.put("success", true);
 		result.put("msg", "下单成功");

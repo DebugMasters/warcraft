@@ -71,4 +71,7 @@ public class NuanxinWechatOrderService extends CrudService<NuanxinWechatOrderDao
 		super.delete(nuanxinWechatOrder);
 	}
 	
+	public long totalIncome() {
+		return dao.totalIncome();
+	}
 }

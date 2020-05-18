@@ -199,6 +199,7 @@ public class WechatUtil {
 		xStream.alias("xml", OrderInformResponse.class);
 		OrderInformResponse response = (OrderInformResponse) xStream.fromXML(result);
 		NuanxinWechatOrder wechatOrder = new NuanxinWechatOrder();
+		wechatOrder.setId("O" + System.currentTimeMillis() + StringUtil.randomStringNumberUpperCase(4));
 		wechatOrder.setReturnCode(response.getReturn_code());
 		wechatOrder.setReturnMsg(response.getReturn_msg());
 		wechatOrder.setData(result);
@@ -207,6 +208,7 @@ public class WechatUtil {
 			String[] attach = response.getAttach().split("_");
 			wechatOrder.setUserId(attach[0]);
 			wechatOrder.setOrderId(attach[1]);
+			wechatOrder.setResultCode(response.getResult_code());
 			if (!"SUCCESS".equals(response.getResult_code())) {
 //				// 支付不成功，补全错误信息
 				wechatOrder.setErrCode(response.getErr_code());
@@ -216,6 +218,7 @@ public class WechatUtil {
 				// 支付成功，补全支付信息
 				wechatOrder.setOutTradeNo(response.getOut_trade_no());
 				wechatOrder.setTotalFee(response.getTotal_fee());
+				wechatOrder.setOpenId(response.getOpenid());
 				
 				NuanxinOrder order = new NuanxinOrder();
 				order.setOrderId(wechatOrder.getOrderId());

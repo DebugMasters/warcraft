@@ -14,5 +14,5 @@ import com.fenghuolun.modules.order.entity.NuanxinWechatOrder;
  */
 @MyBatisDao
 public interface NuanxinWechatOrderDao extends CrudDao<NuanxinWechatOrder> {
-	
+	public long totalIncome();
 }

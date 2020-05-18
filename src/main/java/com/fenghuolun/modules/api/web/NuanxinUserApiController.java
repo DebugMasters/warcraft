@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fenghuolun.modules.user.service.NuanxinAccountService;
 import com.fenghuolun.modules.user.service.NuanxinCharacterService;
+import com.fenghuolun.modules.user.service.NuanxinInviteService;
 import com.fenghuolun.modules.user.service.NuanxinUserService;
 import com.jeesite.common.web.BaseController;
 
@@ -32,6 +33,8 @@ public class NuanxinUserApiController extends BaseController {
 	private NuanxinAccountService nuanxinAccountService;
 	@Autowired
 	private NuanxinCharacterService nuanxinCharacterService;
+	@Autowired
+	private NuanxinInviteService nuanxinInviteService;
 	
 	/*
 	 * 登陆
@@ -142,5 +145,16 @@ public class NuanxinUserApiController extends BaseController {
 		String characterId = request.getParameter("characterId");
 		String userId = request.getParameter("userId");
 		return nuanxinCharacterService.deleteCharacter(userId, characterId);
+	}
+	
+	/*
+	 * 接受邀请
+	 */
+	@ResponseBody
+	@RequestMapping(value = "completeInvite")
+	public Map<String, Object> completeInvite(HttpServletRequest request, HttpServletResponse response) {
+		String inviteUserId = request.getParameter("inviteUserId");
+		String invitedUserId = request.getParameter("invitedUserId");
+		return nuanxinInviteService.completeInvite(inviteUserId, invitedUserId);
 	}
 }

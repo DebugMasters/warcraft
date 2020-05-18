@@ -1,0 +1,344 @@
+<% layout('/layouts/default.html', {title: '', bodyClass: ''}){ %>
+<!-- <link rel="stylesheet" href="${ctxStatic}/modules/sys/sysDesktop.css?${_version}"> -->
+<div class="content pb0">
+	<div class="row">
+		<div class="col-md-3 col-sm-6 col-xs-12">
+			<div class="info-box">
+				<span class="info-box-icon bg-aqua"><i class="fa fa-shopping-cart"></i></span>
+				<div class="info-box-content">
+					<span class="info-box-text">总订单</span>
+					<span class="info-box-number" id="orderCount">0</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3 col-sm-6 col-xs-12">
+			<div class="info-box">
+				<span class="info-box-icon bg-red"><i class="fa fa-calendar"></i></span>
+				<div class="info-box-content">
+					<span class="info-box-text">今日订单</span>
+					<span class="info-box-number" id="todaysOrder">0</span>
+				</div>
+			</div>
+		</div>
+		<div class="clearfix visible-sm-block"></div>
+		<div class="col-md-3 col-sm-6 col-xs-12">
+			<div class="info-box">
+				<span class="info-box-icon bg-green"><i class="fa fa-cny"></i></span>
+				<div class="info-box-content">
+					<span class="info-box-text">总收入</span>
+					<span class="info-box-number" id="totalIncome">0</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3 col-sm-6 col-xs-12">
+			<div class="info-box">
+				<span class="info-box-icon bg-yellow"><i class="fa fa-users"></i></span>
+
+				<div class="info-box-content">
+					<span class="info-box-text">用户总数</span>
+					<span class="info-box-number" id="userCount">0</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+        <section class="col-md-7 ui-sortable">
+        	<div class="box box-widget">
+				<div class="box-header with-border">
+					<h3 class="box-title"><i class="fa fa-inbox"></i> 代练内容</h3>
+					<div class="box-tools pull-right">
+						<button type="button" class="btn btn-box-tool" data-widget="collapse">
+							<i class="fa fa-minus"></i>
+						</button>
+						<button type="button" class="btn btn-box-tool" data-widget="remove">
+							<i class="fa fa-times"></i>
+						</button>
+					</div>
+				</div>
+				<div class="box-body border-radius-none">
+					<div id="myChart2" style="height:300px;width:100%"></div><script>
+		            	$(function(){
+							myChart2 = echarts.init(document.getElementById('myChart2'), 'light');
+							myChart2.setOption({
+								tooltip: {
+							        trigger: 'item',
+							        formatter: "{a} <br/>{b}: {c} ({d}%)"
+							    },
+							    series: [
+							    	{
+							            name:'访问来源',
+							            type:'pie',
+							            radius: ['15%', '70%'],
+							            roseType : 'radius',
+							            avoidLabelOverlap: false,
+							            label: {
+							                normal: {
+							                    show: true
+							                },
+							                emphasis: {
+							                    show: true,
+							                    textStyle: {
+							                        fontSize: '10',
+							                        fontWeight: 'bold'
+							                    }
+							                }
+							            },
+							            labelLine: {
+							                normal: {
+							                    show: true
+							                }
+							            },
+							            data:[
+							                {value:135, name:'视频广告'},
+							                {value:358, name:'搜索引擎'},
+							                {value:335, name:'直接访问'},
+							                {value:310, name:'邮件营销'},
+							                {value:234, name:'联盟广告'},
+							            ]
+							        }
+							    ]
+							});
+						});
+	              	</script>
+				</div>
+			</div>
+          
+          <div class="box box-success box-widget">
+            <div class="box-header">
+              <i class="fa fa-comments-o"></i>
+              <h3 class="box-title">沟通</h3>
+              <div class="box-tools pull-right" data-toggle="tooltip" title="" data-original-title="Status">
+                <div class="btn-group" data-toggle="btn-toggle">
+                  <button type="button" class="btn btn-default btn-sm active"><i class="fa fa-square text-green"></i>
+                  </button>
+                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-square text-red"></i></button>
+                </div>
+              </div>
+            </div>
+            <div class="box-body chat" id="chat-box" style="overflow: hidden; width: auto; ">
+              <!-- chat item -->
+              <div class="item">
+                <img src="${ctxStatic}/images/user1.jpg" alt="user image" class="online2">
+                <p class="message">
+                  <a href="#" class="name">
+                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:15</small>
+                    ThinkGem
+                  </a>
+                  	JeeSite 自发布以来被用到了企业、政府、医疗、金融、互联网等各个领域中， JeeSite 的设计思想和开发模式已深入开发者的内心， 当前版本 JeeSite 团队结合了以往的经验和总结各方面的应用案例， 对架构做一次全部重构，也纳入非常多的新思想。
+                </p>
+                <!-- /.attachment -->
+              </div>
+              <!-- /.item -->
+              <!-- chat item -->
+              <div class="item">
+                <img src="${ctxStatic}/images/user2.jpg" alt="user image" class="offline2">
+                <p class="message">
+                  <a href="#" class="name">
+                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:15</small>
+                    ThinkGem
+                  </a>
+                  JeeSite 基于最主流的 Spring Boot 2 + MyBatis + Shiro + J2Cache/Redis + Beetl 的稳定架构。 前端采用了目前极为流行的扁平化响应式的设计风格，可以完美兼容电脑，平板，手机等多个平台。 基于 jQuery + Bootstrap + AdminLTE 实现。
+                </p>
+              </div>
+              <!-- /.item -->
+              <!-- chat item -->
+              <div class="item">
+                <img src="${ctxStatic}/images/user1.jpg" alt="user image" class="offline2">
+                <p class="message">
+                  <a href="#" class="name">
+                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:30</small>
+                    ThinkGem
+                  </a>
+                  JeeSite 严格遵循了 Web 安全的规范，前后台双重验证，参数编码传输，密码安全策略，密码散列加密存储， 精细的权限验证，数据验证，SQL 编码过滤，从根本上避免了SQL注入，防止 XSS 攻击， CSRF 攻击等常见的 Web 攻击手段。
+                </p>
+              </div>
+              <!-- /.item -->
+              <!-- chat item -->
+              <div class="item">
+                <img src="${ctxStatic}/images/user2.jpg" alt="user image" class="offline2">
+                <p class="message">
+                  <a href="#" class="name">
+                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:30</small>
+                    ThinkGem
+                  </a>
+                  经典架构会的人多，提供一个强大的 在线代码生成 工具，此工具提供常用的单表、一对多、树结构及列表查询等功能的生成， 如果对外观要求不是很高，生成的功能就可以用了。如果你使用了本平台，就可以很简单很高效的快速开发出优秀的产品。
+                </p>
+              </div>
+              <!-- /.item -->
+            </div>
+            <!-- /.chat -->
+            <div class="box-footer">
+              <div class="input-group">
+                <input class="form-control" placeholder="消息内容...">
+                <div class="input-group-btn">
+                  <button type="button" class="btn "><i class="fa fa-plus"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.box (chat box) -->
+          
+        </section>
+        <section class="col-md-5 ui-sortable ui-sortable">
+
+          <!-- solid sales graph -->
+          <div class="box box-solid bg-teal-gradient">
+            <div class="box-header">
+              <i class="fa fa-th"></i>
+
+              <h3 class="box-title">每月销量</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn bg-teal btn-sm" data-widget="remove"><i class="fa fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <div class="box-body border-radius-none">
+              <div class="chart" id="line-chart" style="height: 250px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><svg height="250" version="1.1" width="462.813" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative; left: -0.367824px; top: -0.271661px;"><desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.2.0</desc><defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></defs><text x="44.515625" y="211.9375" text-anchor="end" font-family="Open Sans" font-size="10px" stroke="none" fill="#ffffff" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: &quot;Open Sans&quot;; font-size: 10px; font-weight: normal;" font-weight="normal"><tspan dy="3.46875" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">0</tspan></text><path fill="none" stroke="#efefef" d="M57.015625,211.9375H437.813" stroke-width="0.4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="44.515625" y="165.203125" text-anchor="end" font-family="Open Sans" font-size="10px" stroke="none" fill="#ffffff" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: &quot;Open Sans&quot;; font-size: 10px; font-weight: normal;" font-weight="normal"><tspan dy="3.46875" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">5,000</tspan></text><path fill="none" stroke="#efefef" d="M57.015625,165.203125H437.813" stroke-width="0.4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="44.515625" y="118.46875000000001" text-anchor="end" font-family="Open Sans" font-size="10px" stroke="none" fill="#ffffff" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: &quot;Open Sans&quot;; font-size: 10px; font-weight: normal;" font-weight="normal"><tspan dy="3.468750000000014" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">10,000</tspan></text><path fill="none" stroke="#efefef" d="M57.015625,118.46875000000001H437.813" stroke-width="0.4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="44.515625" y="71.734375" text-anchor="end" font-family="Open Sans" font-size="10px" stroke="none" fill="#ffffff" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: &quot;Open Sans&quot;; font-size: 10px; font-weight: normal;" font-weight="normal"><tspan dy="3.46875" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">15,000</tspan></text><path fill="none" stroke="#efefef" d="M57.015625,71.734375H437.813" stroke-width="0.4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="44.515625" y="25.00000000000003" text-anchor="end" font-family="Open Sans" font-size="10px" stroke="none" fill="#ffffff" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: &quot;Open Sans&quot;; font-size: 10px; font-weight: normal;" font-weight="normal"><tspan dy="3.4687500000000284" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">20,000</tspan></text><path fill="none" stroke="#efefef" d="M57.015625,25.00000000000003H437.813" stroke-width="0.4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="367.9461669198056" y="224.4375" text-anchor="middle" font-family="Open Sans" font-size="10px" stroke="none" fill="#ffffff" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: &quot;Open Sans&quot;; font-size: 10px; font-weight: normal;" font-weight="normal" transform="matrix(1,0,0,1,0,6.5313)"><tspan dy="3.46875" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2013</tspan></text><text x="198.60006819562574" y="224.4375" text-anchor="middle" font-family="Open Sans" font-size="10px" stroke="none" fill="#ffffff" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: &quot;Open Sans&quot;; font-size: 10px; font-weight: normal;" font-weight="normal" transform="matrix(1,0,0,1,0,6.5313)"><tspan dy="3.46875" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2012</tspan></text><path fill="none" stroke="#efefef" d="M57.015625,187.01873125C67.65759295261239,186.75701875,88.94152885783718,188.59601640625,99.58349681044957,185.97188125C110.22546476306196,183.34774609375,131.50940066828676,167.18747167008198,142.15136862089915,166.02565C152.67766300880925,164.87645682633197,173.7302517846294,178.94536796875002,184.2565461725395,176.72782187500002C194.78284056044959,174.51027578125002,215.83542933626973,150.49651948002048,226.36172372417983,148.28528125C237.00369167679222,146.0497436987705,258.28762758201697,156.61568359375,268.92959553462936,158.94071875C279.57156348724175,161.26575390625,300.8554993924666,177.93167894467211,311.497467345079,166.8855625C322.02376173298904,155.95951253842213,343.07635050880924,77.94468920493786,353.6026448967193,71.05205312500001C364.01326571992706,64.23516029868786,384.8345073663426,104.373636821772,395.24512818955037,112.047446875C405.88709614216276,119.89178604052199,427.1710320473876,127.85534921875,437.813,133.12465" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><circle cx="57.015625" cy="187.01873125" r="4" fill="#efefef" stroke="#efefef" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="99.58349681044957" cy="185.97188125" r="4" fill="#efefef" stroke="#efefef" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="142.15136862089915" cy="166.02565" r="4" fill="#efefef" stroke="#efefef" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="184.2565461725395" cy="176.72782187500002" r="4" fill="#efefef" stroke="#efefef" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="226.36172372417983" cy="148.28528125" r="4" fill="#efefef" stroke="#efefef" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="268.92959553462936" cy="158.94071875" r="4" fill="#efefef" stroke="#efefef" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="311.497467345079" cy="166.8855625" r="4" fill="#efefef" stroke="#efefef" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="353.6026448967193" cy="71.05205312500001" r="4" fill="#efefef" stroke="#efefef" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="395.24512818955037" cy="112.047446875" r="4" fill="#efefef" stroke="#efefef" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="437.813" cy="133.12465" r="4" fill="#efefef" stroke="#efefef" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle></svg><div class="morris-hover morris-default-style" style="left: 89.1081px; top: 83px; display: none;"><div class="morris-hover-row-label">2011 Q3</div><div class="morris-hover-point" style="color: #efefef">
+				  Item 1:
+				  4,912
+				</div></div></div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer no-border">
+              <div class="row">
+                <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                  <div style="display:inline;width:60px;height:60px;"><canvas width="77" height="77" style="width: 60px; height: 60px;"></canvas><input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60" data-fgcolor="#39CCCC" readonly="readonly" style="width: 34px; height: 20px; position: absolute; vertical-align: middle; margin-top: 20px; margin-left: -47px; border: 0px; background: none; font: bold 12px Arial; text-align: center; color: rgb(57, 204, 204); padding: 0px; -webkit-appearance: none;"></div>
+                  <div class="knob-label">新订购</div>
+                </div>
+                <!-- ./col -->
+                <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                  <div style="display:inline;width:60px;height:60px;"><canvas width="77" height="77" style="width: 60px; height: 60px;"></canvas><input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60" data-fgcolor="#39CCCC" readonly="readonly" style="width: 34px; height: 20px; position: absolute; vertical-align: middle; margin-top: 20px; margin-left: -47px; border: 0px; background: none; font: bold 12px Arial; text-align: center; color: rgb(57, 204, 204); padding: 0px; -webkit-appearance: none;"></div>
+                  <div class="knob-label">进行中</div>
+                </div>
+                <!-- ./col -->
+                <div class="col-xs-4 text-center">
+                  <div style="display:inline;width:60px;height:60px;"><canvas width="77" height="77" style="width: 60px; height: 60px;"></canvas><input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60" data-fgcolor="#39CCCC" readonly="readonly" style="width: 34px; height: 20px; position: absolute; vertical-align: middle; margin-top: 20px; margin-left: -47px; border: 0px; background: none; font: bold 12px Arial; text-align: center; color: rgb(57, 204, 204); padding: 0px; -webkit-appearance: none;"></div>
+                  <div class="knob-label">已成交</div>
+                </div>
+                <!-- ./col -->
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- /.box-footer -->
+          </div>
+          <!-- /.box -->
+
+          <!-- Calendar -->
+          <div class="box box-solid bg-green-gradient">
+            <div class="box-header">
+              <i class="fa fa-calendar"></i>
+              <h3 class="box-title">日程表</h3>
+              <!-- tools box -->
+              <div class="pull-right box-tools">
+                <!-- button with a dropdown -->
+                <div class="btn-group">
+                  <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-bars"></i></button>
+                  <ul class="dropdown-menu pull-right" role="menu">
+                    <li><a href="#">Add new event</a></li>
+                    <li><a href="#">Clear events</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">View calendar</a></li>
+                  </ul>
+                </div>
+                <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i>
+                </button>
+              </div>
+              <!-- /. tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <!--The calendar --><style>#calendar th, #calendar td{text-align:center;} #calendar .old.day, #calendar .new.day{color:#ddd}</style>
+              <div id="calendar" style="width: 100%"><div class="datepicker datepicker-inline"><div class="datepicker-days" style=""><table class="table-condensed"><thead><tr><th colspan="7" class="datepicker-title" style="display: none;"></th></tr><tr><th class="prev">«</th><th colspan="5" class="datepicker-switch" style="text-align:center">2019 年 7 月</th><th class="next">»</th></tr><tr><th class="dow">日</th><th class="dow">一</th><th class="dow">二</th><th class="dow">三</th><th class="dow">四</th><th class="dow">五</th><th class="dow">六</th></tr></thead><tbody><tr><td class="old day" data-date="1561852800000">30</td><td class="day" data-date="1561939200000">1</td><td class="day" data-date="1562025600000">2</td><td class="day" data-date="1562112000000">3</td><td class="day" data-date="1562198400000">4</td><td class="day" data-date="1562284800000">5</td><td class="day" data-date="1562371200000">6</td></tr><tr><td class="day" data-date="1562457600000">7</td><td class="day" data-date="1562544000000">8</td><td class="day" data-date="1562630400000">9</td><td class="day" data-date="1562716800000">10</td><td class="day" data-date="1562803200000">11</td><td class="day" data-date="1562889600000">12</td><td class="day" data-date="1562976000000">13</td></tr><tr><td class="day" data-date="1563062400000">14</td><td class="day" data-date="1563148800000">15</td><td class="day" data-date="1563235200000">16</td><td class="day" data-date="1563321600000">17</td><td class="day" data-date="1563408000000">18</td><td class="day" data-date="1563494400000">19</td><td class="day" data-date="1563580800000">20</td></tr><tr><td class="day" data-date="1563667200000">21</td><td class="day" data-date="1563753600000">22</td><td class="day" data-date="1563840000000">23</td><td class="day" data-date="1563926400000">24</td><td class="day" data-date="1564012800000">25</td><td class="day" data-date="1564099200000">26</td><td class="day" data-date="1564185600000">27</td></tr><tr><td class="day" data-date="1564272000000">28</td><td class="day" data-date="1564358400000">29</td><td class="day" data-date="1564444800000">30</td><td class="day" data-date="1564531200000">31</td><td class="new day" data-date="1564617600000">1</td><td class="new day" data-date="1564704000000">2</td><td class="new day" data-date="1564790400000">3</td></tr><tr><td class="new day" data-date="1564876800000">4</td><td class="new day" data-date="1564963200000">5</td><td class="new day" data-date="1565049600000">6</td><td class="new day" data-date="1565136000000">7</td><td class="new day" data-date="1565222400000">8</td><td class="new day" data-date="1565308800000">9</td><td class="new day" data-date="1565395200000">10</td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr><tr><th colspan="7" class="clear" style="display: none;">Clear</th></tr></tfoot></table></div><div class="datepicker-months" style="display: none;"><table class="table-condensed"><thead><tr><th colspan="7" class="datepicker-title" style="display: none;"></th></tr><tr><th class="prev">«</th><th colspan="5" class="datepicker-switch">2019</th><th class="next">»</th></tr></thead><tbody><tr><td colspan="7"><span class="month">Jan</span><span class="month">Feb</span><span class="month">Mar</span><span class="month">Apr</span><span class="month">May</span><span class="month">Jun</span><span class="month focused">Jul</span><span class="month">Aug</span><span class="month">Sep</span><span class="month">Oct</span><span class="month">Nov</span><span class="month">Dec</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr><tr><th colspan="7" class="clear" style="display: none;">Clear</th></tr></tfoot></table></div><div class="datepicker-years" style="display: none;"><table class="table-condensed"><thead><tr><th colspan="7" class="datepicker-title" style="display: none;"></th></tr><tr><th class="prev">«</th><th colspan="5" class="datepicker-switch">2010-2019</th><th class="next">»</th></tr></thead><tbody><tr><td colspan="7"><span class="year old">2009</span><span class="year">2010</span><span class="year">2011</span><span class="year">2012</span><span class="year">2013</span><span class="year">2014</span><span class="year">2015</span><span class="year">2016</span><span class="year">2017</span><span class="year">2018</span><span class="year focused">2019</span><span class="year new">2020</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr><tr><th colspan="7" class="clear" style="display: none;">Clear</th></tr></tfoot></table></div><div class="datepicker-decades" style="display: none;"><table class="table-condensed"><thead><tr><th colspan="7" class="datepicker-title" style="display: none;"></th></tr><tr><th class="prev">«</th><th colspan="5" class="datepicker-switch">2000-2090</th><th class="next">»</th></tr></thead><tbody><tr><td colspan="7"><span class="decade old">1990</span><span class="decade">2000</span><span class="decade focused">2010</span><span class="decade">2020</span><span class="decade">2030</span><span class="decade">2040</span><span class="decade">2050</span><span class="decade">2060</span><span class="decade">2070</span><span class="decade">2080</span><span class="decade">2090</span><span class="decade new">2100</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr><tr><th colspan="7" class="clear" style="display: none;">Clear</th></tr></tfoot></table></div><div class="datepicker-centuries" style="display: none;"><table class="table-condensed"><thead><tr><th colspan="7" class="datepicker-title" style="display: none;"></th></tr><tr><th class="prev">«</th><th colspan="5" class="datepicker-switch">2000-2900</th><th class="next">»</th></tr></thead><tbody><tr><td colspan="7"><span class="century old">1900</span><span class="century focused">2000</span><span class="century">2100</span><span class="century">2200</span><span class="century">2300</span><span class="century">2400</span><span class="century">2500</span><span class="century">2600</span><span class="century">2700</span><span class="century">2800</span><span class="century">2900</span><span class="century new">3000</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr><tr><th colspan="7" class="clear" style="display: none;">Clear</th></tr></tfoot></table></div></div></div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer text-black">
+              <div class="row">
+                <div class="col-sm-6">
+                  <!-- Progress bars -->
+                  <div class="clearfix">
+                    <span class="pull-left">任务 #1</span>
+                    <small class="pull-right">90%</small>
+                  </div>
+                  <div class="progress xs">
+                    <div class="progress-bar progress-bar-green" style="width: 90%;"></div>
+                  </div>
+                  <div class="clearfix">
+                    <span class="pull-left">任务 #2</span>
+                    <small class="pull-right">70%</small>
+                  </div>
+                  <div class="progress xs">
+                    <div class="progress-bar progress-bar-green" style="width: 70%;"></div>
+                  </div>
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-6">
+                  <div class="clearfix">
+                    <span class="pull-left">任务 #3</span>
+                    <small class="pull-right">60%</small>
+                  </div>
+                  <div class="progress xs">
+                    <div class="progress-bar progress-bar-green" style="width: 60%;"></div>
+                  </div>
+                  <div class="clearfix">
+                    <span class="pull-left">任务 #4</span>
+                    <small class="pull-right">40%</small>
+                  </div>
+                  <div class="progress xs">
+                    <div class="progress-bar progress-bar-green" style="width: 40%;"></div>
+                  </div>
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.box -->
+        </section>
+    </div>
+</div>
+<footer class="main-footer m0">
+	<div class="pull-right hidden-xs">当前版本： ${@Global.getConfig('productVersion')}</div>
+	&copy; ${@DateUtils.getYear()} ${@Global.getConfig('productName')} - Powered By <a href="http://jeesite.com">JeeSite</a>
+</footer>
+<% } %>
+<script src="${ctxStatic}/jquery/jquery-ui-sortable-1.12.1.min.js"></script>
+<script src="${ctxStatic}/echarts/4.2/echarts.min.js"></script>
+<script>
+$(function(){
+	$(window).resize(function(){
+		var footerHeight = $('.main-footer').outerHeight() || 0;
+		var windowHeight = $(window).height();
+		$('.content').css('min-height', windowHeight - footerHeight);
+		myChart2.resize();
+	}).resize();
+	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+		$(window).resize();
+	});
+	$('.ui-sortable').sortable({
+		connectWith : '.ui-sortable',
+		handle      : '.box-header, .nav-tabs',
+		placeholder : 'sort-highlight',
+		forcePlaceholderSize: true,
+		zIndex : 999999
+	}).find('.box-header, .nav-tabs').css('cursor', 'move');
+	
+	$.ajax({
+		type: "POST",
+		url: "${ctx}/system/nuanxinDesktop/cardData",
+		data: {},
+		dataType: "json",
+		success: function(data){
+			$("#userCount").html(data.userCount);
+			$("#orderCount").html(data.orderCount);
+			$("#todaysOrder").html(data.todaysOrder);
+			$("#totalIncome").html(data.totalIncome);
+		}
+	});
+});
+</script>
