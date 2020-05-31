@@ -58,6 +58,7 @@ public class NuanxinSystemApiController extends BaseController {
 		result.put("msg", "查询成功");
 		result.put("carouselList", carouselList);
 		result.put("articleList", articleList);
+		result.put("imgRoot", "/warcraft/static/img/");
 		result.put("notificationList", new ArrayList<String>());
 		return result;
 	}
