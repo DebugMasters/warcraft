@@ -22,6 +22,7 @@ import com.fenghuolun.modules.system.service.NuanxinCarouselService;
 import com.fenghuolun.modules.system.service.NuanxinDictDataService;
 import com.fenghuolun.modules.system.service.NuanxinRealmListService;
 import com.fenghuolun.modules.system.service.NuanxinTradeCatalogService;
+import com.fenghuolun.modules.user.service.NuanxinUserService;
 import com.jeesite.common.web.BaseController;
 
 /**
@@ -44,6 +45,8 @@ public class NuanxinSystemApiController extends BaseController {
 	private NuanxinTradeCatalogService nuanxinTradeCatalogService;
 	@Autowired
 	private NuanxinDictDataService nuanxinDictDataService;
+	@Autowired
+	private NuanxinUserService nuanxinUserService;
 	
 	/*
 	 * 主页信息
@@ -111,5 +114,23 @@ public class NuanxinSystemApiController extends BaseController {
 		result.put("msg", "查询成功");
 		result.put("specList", list);
 		return result;
+	}
+	
+	/*
+	 * 生成海报图片
+	 */
+	@ResponseBody
+	@RequestMapping(value = "getPoster")
+	public Map<String, Object> getPoster(HttpServletRequest request, HttpServletResponse response) {
+		String userId = request.getParameter("userId");
+        String page = request.getParameter("page");
+        String width = request.getParameter("width");
+		if (userId == null || userId.isEmpty() || page == null || page.isEmpty()) {
+			Map<String, Object> result = new HashMap<>();
+			result.put("success", false);
+			result.put("msg", "数据异常");
+			return result;
+		}
+		return nuanxinUserService.getPoster(userId, page, width);
 	}
 }
