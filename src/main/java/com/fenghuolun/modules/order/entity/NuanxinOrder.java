@@ -71,6 +71,7 @@ public class NuanxinOrder extends DataEntity<NuanxinOrder> {
 	private String realmName;
 	private String realmZone;
 	private Integer realmType;
+	private String characterClass;
 	private String characterClassName;
 	
 	public NuanxinOrder() {
@@ -295,6 +296,14 @@ public class NuanxinOrder extends DataEntity<NuanxinOrder> {
 	
 	public void setRealmType(Integer realmType) {
 		this.realmType = realmType;
+	}
+	
+	public String getCharacterClass() {
+		return characterClass;
+	}
+	
+	public void setCharacterClass(String characterClass) {
+		this.characterClass = characterClass;
 	}
 	
 	public String getCharacterClassName() {

@@ -20,8 +20,8 @@ demoMode: false
 
 server:
 
-  port: 8980
-#  port: 80
+#  port: 8980
+  port: 80
   servlet:
     context-path: /warcraft
   tomcat:
@@ -40,9 +40,12 @@ jdbc:
   # Mysql 数据库配置
   type: mysql
   driver: com.mysql.jdbc.Driver
-  url: jdbc:mysql://39.100.37.104:3307/warcraft?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
-  username: root
-  password: db1133
+#  url: jdbc:mysql://39.100.37.104:3307/warcraft?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+#  username: root
+#  password: db1133
+  url: jdbc:mysql://39.106.90.36:3306/warcraft?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+  username: warcraft
+  password: warcraft@1qaz
   testSql: SELECT 1
 
 #  # Oracle 数据库配置

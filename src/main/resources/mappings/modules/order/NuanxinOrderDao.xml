@@ -7,6 +7,7 @@
 		SELECT ${sqlMap.column.toSql()}, 
 			b.user_name AS "userName", 
 			c.character_account_name AS "accountName", 
+			c.character_class AS "characterClass", 
 			d.realm_name AS "realmName", 
 			d.realm_zone_name AS "realmZone", 
 			d.realm_type AS "realmType" 
@@ -27,6 +28,7 @@
 		SELECT a.*, 
 			b.user_name AS "userName", 
 			c.character_account_name AS "accountName", 
+			c.character_class AS "characterClass", 
 			d.realm_name AS "realmName", 
 			d.realm_zone_name AS "realmZone", 
 			d.realm_type AS "realmType" 

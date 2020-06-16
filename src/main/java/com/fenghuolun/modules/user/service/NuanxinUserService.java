@@ -205,7 +205,7 @@ public class NuanxinUserService extends CrudService<NuanxinUserDao, NuanxinUser>
             
     		result.put("success", true);
     		result.put("msg", "生成成功");
-    		result.put("poster", "warcraft/static/img/" + imgName);
+    		result.put("poster", "warcraft/static/img/share/" + imgName);
     		result.put("coverImage", "warcraft/static/img/share.jpg");
     		return result;
 		} catch (Exception e) {
