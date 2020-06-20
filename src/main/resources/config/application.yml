@@ -21,14 +21,18 @@ demoMode: false
 server:
 
 #  port: 8980
-  port: 80
+  port: 443
   servlet:
     context-path: /warcraft
   tomcat:
     uri-encoding: UTF-8
     
   # 将请求协议转换为 https
-  schemeHttps: false
+  schemeHttps: true
+  
+  ssl: 
+     key-store: /home/cert/4102635_www.5mlf.cn.pfx
+     key-store-password: t6kRAQtF
     
 #======================================#
 #========== Database sttings ==========#
