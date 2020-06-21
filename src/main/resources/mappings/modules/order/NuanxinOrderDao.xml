@@ -40,11 +40,32 @@
 			<if test="userId != null and userId != ''">
 				AND a.user_id = #{userId} 
 			</if>
+			<if test="orderStatus != null and orderStatus != ''">
+				AND a.order_status = #{orderStatus} 
+			</if>
 		</where>
 	</select>
 	
 	<select id="todaysOrder" resultType="java.lang.Long">
 		SELECT COUNT(1) FROM nuanxin_order
 		WHERE TO_DAYS(create_time) >= TO_DAYS(NOW())
+	</select>
+	
+	<select id="countByType" resultType="NuanxinOrder">
+		SELECT b.catalog_name AS "orderCatalog", a.num AS "orderStatus" 
+		FROM
+			(SELECT order_catalog_1, COUNT(1) as num FROM nuanxin_order WHERE create_time >= #{createTime} GROUP BY order_catalog_1) a, 
+			nuanxin_trade_catalog b
+		WHERE a.order_catalog_1 = b.catalog_code
+	</select>
+	
+	<select id="countByMonth" resultType="NuanxinOrder">
+		SELECT 
+			DATE_FORMAT(create_time,'%Y-%m') AS 'orderCatalog', 
+			COUNT(1) AS "orderStatus" 
+		FROM
+			nuanxin_order
+		WHERE create_time >= #{createTime}
+		GROUP BY orderCatalog
 	</select>
 </mapper>

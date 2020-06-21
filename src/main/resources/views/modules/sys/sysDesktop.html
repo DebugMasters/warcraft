@@ -59,7 +59,7 @@
 					<div id="myChart2" style="height:300px;width:100%"></div><script>
 		            	$(function(){
 							myChart2 = echarts.init(document.getElementById('myChart2'), 'light');
-							myChart2.setOption({
+/*							myChart2.setOption({
 								tooltip: {
 							        trigger: 'item',
 							        formatter: "{a} <br/>{b}: {c} ({d}%)"
@@ -97,7 +97,7 @@
 							            ]
 							        }
 							    ]
-							});
+							});*/
 						});
 	              	</script>
 				</div>
@@ -196,31 +196,32 @@
               </div>
             </div>
             <div class="box-body border-radius-none">
-              <div class="chart" id="line-chart" style="height: 250px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><svg height="250" version="1.1" width="462.813" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative; left: -0.367824px; top: -0.271661px;"><desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.2.0</desc><defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></defs><text x="44.515625" y="211.9375" text-anchor="end" font-family="Open Sans" font-size="10px" stroke="none" fill="#ffffff" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: &quot;Open Sans&quot;; font-size: 10px; font-weight: normal;" font-weight="normal"><tspan dy="3.46875" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">0</tspan></text><path fill="none" stroke="#efefef" d="M57.015625,211.9375H437.813" stroke-width="0.4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="44.515625" y="165.203125" text-anchor="end" font-family="Open Sans" font-size="10px" stroke="none" fill="#ffffff" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: &quot;Open Sans&quot;; font-size: 10px; font-weight: normal;" font-weight="normal"><tspan dy="3.46875" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">5,000</tspan></text><path fill="none" stroke="#efefef" d="M57.015625,165.203125H437.813" stroke-width="0.4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="44.515625" y="118.46875000000001" text-anchor="end" font-family="Open Sans" font-size="10px" stroke="none" fill="#ffffff" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: &quot;Open Sans&quot;; font-size: 10px; font-weight: normal;" font-weight="normal"><tspan dy="3.468750000000014" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">10,000</tspan></text><path fill="none" stroke="#efefef" d="M57.015625,118.46875000000001H437.813" stroke-width="0.4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="44.515625" y="71.734375" text-anchor="end" font-family="Open Sans" font-size="10px" stroke="none" fill="#ffffff" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: &quot;Open Sans&quot;; font-size: 10px; font-weight: normal;" font-weight="normal"><tspan dy="3.46875" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">15,000</tspan></text><path fill="none" stroke="#efefef" d="M57.015625,71.734375H437.813" stroke-width="0.4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="44.515625" y="25.00000000000003" text-anchor="end" font-family="Open Sans" font-size="10px" stroke="none" fill="#ffffff" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: &quot;Open Sans&quot;; font-size: 10px; font-weight: normal;" font-weight="normal"><tspan dy="3.4687500000000284" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">20,000</tspan></text><path fill="none" stroke="#efefef" d="M57.015625,25.00000000000003H437.813" stroke-width="0.4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="367.9461669198056" y="224.4375" text-anchor="middle" font-family="Open Sans" font-size="10px" stroke="none" fill="#ffffff" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: &quot;Open Sans&quot;; font-size: 10px; font-weight: normal;" font-weight="normal" transform="matrix(1,0,0,1,0,6.5313)"><tspan dy="3.46875" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2013</tspan></text><text x="198.60006819562574" y="224.4375" text-anchor="middle" font-family="Open Sans" font-size="10px" stroke="none" fill="#ffffff" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: &quot;Open Sans&quot;; font-size: 10px; font-weight: normal;" font-weight="normal" transform="matrix(1,0,0,1,0,6.5313)"><tspan dy="3.46875" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2012</tspan></text><path fill="none" stroke="#efefef" d="M57.015625,187.01873125C67.65759295261239,186.75701875,88.94152885783718,188.59601640625,99.58349681044957,185.97188125C110.22546476306196,183.34774609375,131.50940066828676,167.18747167008198,142.15136862089915,166.02565C152.67766300880925,164.87645682633197,173.7302517846294,178.94536796875002,184.2565461725395,176.72782187500002C194.78284056044959,174.51027578125002,215.83542933626973,150.49651948002048,226.36172372417983,148.28528125C237.00369167679222,146.0497436987705,258.28762758201697,156.61568359375,268.92959553462936,158.94071875C279.57156348724175,161.26575390625,300.8554993924666,177.93167894467211,311.497467345079,166.8855625C322.02376173298904,155.95951253842213,343.07635050880924,77.94468920493786,353.6026448967193,71.05205312500001C364.01326571992706,64.23516029868786,384.8345073663426,104.373636821772,395.24512818955037,112.047446875C405.88709614216276,119.89178604052199,427.1710320473876,127.85534921875,437.813,133.12465" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><circle cx="57.015625" cy="187.01873125" r="4" fill="#efefef" stroke="#efefef" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="99.58349681044957" cy="185.97188125" r="4" fill="#efefef" stroke="#efefef" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="142.15136862089915" cy="166.02565" r="4" fill="#efefef" stroke="#efefef" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="184.2565461725395" cy="176.72782187500002" r="4" fill="#efefef" stroke="#efefef" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="226.36172372417983" cy="148.28528125" r="4" fill="#efefef" stroke="#efefef" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="268.92959553462936" cy="158.94071875" r="4" fill="#efefef" stroke="#efefef" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="311.497467345079" cy="166.8855625" r="4" fill="#efefef" stroke="#efefef" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="353.6026448967193" cy="71.05205312500001" r="4" fill="#efefef" stroke="#efefef" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="395.24512818955037" cy="112.047446875" r="4" fill="#efefef" stroke="#efefef" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="437.813" cy="133.12465" r="4" fill="#efefef" stroke="#efefef" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle></svg><div class="morris-hover morris-default-style" style="left: 89.1081px; top: 83px; display: none;"><div class="morris-hover-row-label">2011 Q3</div><div class="morris-hover-point" style="color: #efefef">
-				  Item 1:
-				  4,912
-				</div></div></div>
+              	<div id="myChart3" style="height:300px;width:100%"></div>
+              	<script>
+	            	$(function(){
+						myChart3 = echarts.init(document.getElementById('myChart3'), 'light');
+					});
+              	</script>
             </div>
-            <!-- /.box-body -->
+            <!-- /.box-body
             <div class="box-footer no-border">
               <div class="row">
                 <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
                   <div style="display:inline;width:60px;height:60px;"><canvas width="77" height="77" style="width: 60px; height: 60px;"></canvas><input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60" data-fgcolor="#39CCCC" readonly="readonly" style="width: 34px; height: 20px; position: absolute; vertical-align: middle; margin-top: 20px; margin-left: -47px; border: 0px; background: none; font: bold 12px Arial; text-align: center; color: rgb(57, 204, 204); padding: 0px; -webkit-appearance: none;"></div>
                   <div class="knob-label">新订购</div>
                 </div>
-                <!-- ./col -->
+                
                 <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
                   <div style="display:inline;width:60px;height:60px;"><canvas width="77" height="77" style="width: 60px; height: 60px;"></canvas><input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60" data-fgcolor="#39CCCC" readonly="readonly" style="width: 34px; height: 20px; position: absolute; vertical-align: middle; margin-top: 20px; margin-left: -47px; border: 0px; background: none; font: bold 12px Arial; text-align: center; color: rgb(57, 204, 204); padding: 0px; -webkit-appearance: none;"></div>
                   <div class="knob-label">进行中</div>
                 </div>
-                <!-- ./col -->
+                
                 <div class="col-xs-4 text-center">
                   <div style="display:inline;width:60px;height:60px;"><canvas width="77" height="77" style="width: 60px; height: 60px;"></canvas><input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60" data-fgcolor="#39CCCC" readonly="readonly" style="width: 34px; height: 20px; position: absolute; vertical-align: middle; margin-top: 20px; margin-left: -47px; border: 0px; background: none; font: bold 12px Arial; text-align: center; color: rgb(57, 204, 204); padding: 0px; -webkit-appearance: none;"></div>
                   <div class="knob-label">已成交</div>
                 </div>
-                <!-- ./col -->
+                
               </div>
-              <!-- /.row -->
             </div>
             <!-- /.box-footer -->
           </div>
@@ -338,6 +339,29 @@ $(function(){
 			$("#orderCount").html(data.orderCount);
 			$("#todaysOrder").html(data.todaysOrder);
 			$("#totalIncome").html(data.totalIncome);
+		}
+	});
+	
+	$.ajax({
+		type: "POST",
+		url: "${ctx}/system/nuanxinDesktop/orderTypeChart",
+		data: {},
+		dataType: "json",
+		success: function(data){
+			myChart2.setOption(JSON.parse(data.data));
+		}
+	});
+	
+	$.ajax({
+		type: "POST",
+		url: "${ctx}/system/nuanxinDesktop/monthOrderChart",
+		data: {},
+		dataType: "json",
+		success: function(data){
+			var o = JSON.parse(data.data);
+			o.xAxis[0].axisTick = false;
+			o.yAxis[0].axisTick = false;
+			myChart3.setOption(o);
 		}
 	});
 });

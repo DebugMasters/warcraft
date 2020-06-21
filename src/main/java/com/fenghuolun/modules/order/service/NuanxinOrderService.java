@@ -232,4 +232,18 @@ public class NuanxinOrderService extends CrudService<NuanxinOrderDao, NuanxinOrd
 		result.put("msg", "取消成功");
 		return result;
 	}
+	
+	public List<NuanxinOrder> countByType(Date startTime) {
+		NuanxinOrder order = new NuanxinOrder();
+		order.setCreateTime(startTime);
+		List<NuanxinOrder> list = dao.countByType(order);
+		return list;
+	}
+	
+	public List<NuanxinOrder> countByMonth(Date startTime) {
+		NuanxinOrder order = new NuanxinOrder();
+		order.setCreateTime(startTime);
+		List<NuanxinOrder> list = dao.countByMonth(order);
+		return list;
+	}
 }

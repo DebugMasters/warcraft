@@ -148,7 +148,7 @@ public class NuanxinUserService extends CrudService<NuanxinUserDao, NuanxinUser>
 			NuanxinCoupon coupon = new NuanxinCoupon();
 			coupon.setUserId(userId);
 			coupon.setCouponStatus(1);
-			long couponCount = nuanxinCouponDao.findCount(coupon);
+			long couponCount = nuanxinCouponDao.getByUser(userId).size();
 			result.put("success", true);
 			result.put("msg", "查询成功");
 			result.put("userInfo", user);

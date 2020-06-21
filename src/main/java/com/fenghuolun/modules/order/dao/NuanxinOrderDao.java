@@ -19,4 +19,6 @@ import com.fenghuolun.modules.order.entity.NuanxinOrder;
 public interface NuanxinOrderDao extends CrudDao<NuanxinOrder> {
 	public List<NuanxinOrder> orderList(NuanxinOrder order);
 	public long todaysOrder();
+	public List<NuanxinOrder> countByType(NuanxinOrder order);
+	public List<NuanxinOrder> countByMonth(NuanxinOrder order);
 }
