@@ -191,7 +191,7 @@
 							<label class="control-label col-sm-4" title="">
 								<span class="required hide">*</span> ${text('密码')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input type="password" path="accountPassword" maxlength="30" class="form-control" readonly="true"/>
+								<#form:input type="password" path="accountPassword" maxlength="30" class="form-control" readonly="true" id="accountPassword"/>
 							</div>
 						</div>
 					</div>
@@ -241,7 +241,33 @@
 	</div>
 </div>
 <% } %>
+<script src="${ctxStatic}/cryptojs-3.1.2/rollups/aes.js"></script>
+<script src="${ctxStatic}/cryptojs-3.1.2/components/mode-cfb.js"></script>
 <script>
+
+function encrypt(str, key, iv) {
+	var key = CryptoJS.enc.Utf8.parse(key); 
+	var iv = CryptoJS.enc.Utf8.parse(iv); 
+	var encrypted = CryptoJS.AES.encrypt(str, key, {
+		iv : iv, 
+		mode : CryptoJS.mode.CFB,
+		padding : CryptoJS.pad.Pkcs7 
+	});
+	//返回的是base64格式的密文	
+    return encrypted;
+}
+
+function decrypt(str, key, iv) {
+	var key = CryptoJS.enc.Utf8.parse(key);
+	var iv = CryptoJS.enc.Utf8.parse(iv);
+	var decrypted = CryptoJS.AES.decrypt(str, key, {
+		iv : iv,
+		mode : CryptoJS.mode.CFB,
+		padding : CryptoJS.pad.Pkcs7
+	});
+	return decrypted.toString(CryptoJS.enc.Utf8);
+}
+
 $("#inputForm").validate({
 	submitHandler: function(form){
 		js.ajaxSubmitForm($(form), function(data){
@@ -256,6 +282,17 @@ $("#inputForm").validate({
 });
 
 $("#btnPasswd").click(function() {
-	alert("password...");
+	$.ajax({
+		type: "POST",
+		url: "${ctx}/system/nuanxinDesktop/getDecryptInfo",
+		data: {},
+		dataType: "json",
+		success: function(data){
+			var key = data.key;
+			var iv = data.iv;
+			var pass = decrypt($("#accountPassword").val(), key, iv);
+			alert(pass);
+		}
+	});
 });
 </script>
